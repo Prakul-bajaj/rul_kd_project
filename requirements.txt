@@ -1,0 +1,33 @@
+# Core numerical / data handling
+# Version RANGES, not exact pins -- lets pip pick whichever release has a
+# prebuilt wheel for your Python version/OS/arch, instead of forcing a
+# specific version that may only ship as source (which then needs a C/C++
+# build toolchain you likely don't have configured on Windows).
+#
+# NOTE ON PYTHON 3.13: numpy only ships prebuilt wheels for 3.13 starting at
+# 2.1.0, and torch only starting at 2.5.0. If you're on Python 3.13, the
+# lower bounds below matter -- don't cap numpy below 2.1 or torch below 2.5.
+numpy>=2.1
+pandas>=2.2
+scikit-learn>=1.5
+
+# Deep learning
+# Prefer installing torch FIRST, separately, using the command generated for
+# your exact setup at https://pytorch.org/get-started/locally/ -- then this
+# line becomes a no-op (pip sees it's already satisfied). If you skip that
+# and let this line install it, you'll get the CPU-only build.
+torch>=2.5
+
+# Model profiling
+thop>=0.1.1            # FLOPs counter
+
+# Plotting for the trade-off / results analysis notebooks
+matplotlib>=3.9
+seaborn>=0.13
+
+# Utilities
+tqdm>=4.66
+openpyxl>=3.1        # only needed if you regenerate the literature matrix xlsx
+
+# Optional: experiment tracking (comment out if unused)
+tensorboard>=2.16
