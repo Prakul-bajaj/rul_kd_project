@@ -30,6 +30,7 @@ class StudentTransformer(nn.Module):
             dropout=cfg.dropout,
             activation="gelu",
             batch_first=True,
+            norm_first=True,   # Pre-LN, see teacher_transformer.py
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=cfg.n_layers)
         self.norm = nn.LayerNorm(cfg.d_model)
@@ -48,7 +49,15 @@ class StudentTransformer(nn.Module):
         else:
             head_in = cfg.d_model
 
-        self.head = RULRegressionHead(head_in, max(head_in // 2, 8), cfg.dropout)
+        self.head = RULRegressionHead(head_in, max(head_in // 2, 8), cfg.dropout,
+                                       output_activation=getattr(cfg, "output_activation", "none"))
+        self._init_weights()
+
+    def _init_weights(self):
+        """Explicit Xavier-uniform init, mirroring TeacherTransformer."""
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
 
     def forward(self, x: torch.Tensor, return_features: bool = False):
         h = self.input_proj(x)

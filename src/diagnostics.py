@@ -43,23 +43,24 @@ RUL_BUCKET_LABELS = ["0-15 (near-failure)", "15-30", "30-60", "60-90", "90+ (hea
 
 def _load_model(subset: str, model_name: str, device: str):
     ckpt_map = {
-        "teacher": ("teacher", build_teacher, config.TEACHER_CFG),
-        "student": ("student", build_student, config.STUDENT_CFG),
-        "student_no_kd": ("student_no_kd", build_student, config.STUDENT_CFG),
+        "teacher": ("teacher", build_teacher, config.get_teacher_config),
+        "student": ("student", build_student, config.get_student_config),
+        "student_no_kd": ("student_no_kd", build_student, config.get_student_config),
     }
     if model_name == "baseline":
         ckpt_path = os.path.join(config.CHECKPOINT_DIR, f"lstm_baseline_{subset}.pt")
         if not os.path.exists(ckpt_path):
             return None
-        model = LSTMBaseline(config.TEACHER_CFG.input_dim).to(device)
+        model = LSTMBaseline(config.get_input_dim(subset)).to(device)
         model.load_state_dict(torch.load(ckpt_path, map_location=device, weights_only=True))
         return model
 
-    ckpt_key, builder, cfg = ckpt_map[model_name]
+    ckpt_key, builder, default_cfg_fn = ckpt_map[model_name]
     ckpt_path = os.path.join(config.CHECKPOINT_DIR, f"{ckpt_key}_{subset}.pt")
     if not os.path.exists(ckpt_path):
         return None
     ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
+    cfg = ckpt.get("config") or default_cfg_fn(subset)
     model = builder(cfg).to(device)
     model.load_state_dict(ckpt["state_dict"])
     return model

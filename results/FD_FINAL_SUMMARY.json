@@ -1,0 +1,31 @@
+{
+  "device": "cuda",
+  "started": "2026-08-21 20:57:23",
+  "stages": {
+    "1_preprocess": {
+      "status": "ok",
+      "seconds": 9.2
+    },
+    "2_official_teacher": {
+      "status": "ok",
+      "seconds": 108.6
+    },
+    "3_official_student_kd_and_nokd": {
+      "status": "ok",
+      "seconds": 229.4
+    },
+    "4_ensembles": {
+      "status": "ok",
+      "seconds": 657.7
+    },
+    "5_final_evaluate": {
+      "status": "ok",
+      "seconds": 84.3
+    },
+    "6_multi_seed_protocol": {
+      "status": "ok",
+      "seconds": 2238.1
+    }
+  },
+  "finished": "2026-08-21 21:52:50"
+}

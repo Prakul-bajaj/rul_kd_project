@@ -45,7 +45,7 @@ def evaluate(model, loader, device):
 
 
 def train_one_subset(subset: str, device: str, force: bool = False):
-    cfg = config.STUDENT_CFG
+    cfg = config.get_student_config(subset)
     ckpt_path = os.path.join(config.CHECKPOINT_DIR, f"student_no_kd_{subset}.pt")
     data_path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}.npz")
 

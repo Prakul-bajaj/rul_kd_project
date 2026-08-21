@@ -83,13 +83,13 @@ def _member_ckpt_path(kind: str, subset: str, seed: int) -> str:
 
 def train_teacher_ensemble(subset: str, device: str, seeds=None, teacher_cfg: TeacherConfig = None, force: bool = False):
     seeds = seeds or config.ENSEMBLE_SEEDS
-    cfg = teacher_cfg or config.TEACHER_CFG
+    cfg = teacher_cfg or config.get_teacher_config(subset)
     models = []
     for seed in seeds:
         ckpt_path = _member_ckpt_path("teacher", subset, seed)
         if not force and os.path.exists(ckpt_path):
             ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
-            m = build_teacher(cfg).to(device)
+            m = build_teacher(ckpt.get("config") or cfg).to(device)
             m.load_state_dict(ckpt["state_dict"])
             print(f"[{subset}][teacher-ensemble] seed={seed}: loaded cached member "
                   f"(test_rmse={ckpt['test_rmse']:.3f})")
@@ -116,13 +116,13 @@ def train_teacher_ensemble(subset: str, device: str, seeds=None, teacher_cfg: Te
 def train_student_ensemble(subset: str, device: str, seeds=None, student_cfg: StudentConfig = None,
                             teacher_model=None, force: bool = False):
     seeds = seeds or config.ENSEMBLE_SEEDS
-    cfg = student_cfg or config.STUDENT_CFG
+    cfg = student_cfg or config.get_student_config(subset)
     models = []
     for seed in seeds:
         ckpt_path = _member_ckpt_path("student", subset, seed)
         if not force and os.path.exists(ckpt_path):
             ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
-            m = build_student(cfg).to(device)
+            m = build_student(ckpt.get("config") or cfg).to(device)
             m.load_state_dict(ckpt["state_dict"])
             print(f"[{subset}][student-ensemble] seed={seed}: loaded cached member "
                   f"(test_rmse={ckpt['test_rmse']:.3f})")

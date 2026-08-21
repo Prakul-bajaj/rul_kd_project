@@ -1,0 +1,452 @@
+[20:57:23] FD001/FD002 FINAL RUN START -- device=cuda
+[20:57:23] === STAGE START: 1_preprocess ===
+[FD001] loading raw data ...
+[FD001] single-condition subset -> using global normalization
+[FD001] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD001.npz | train=(14459, 30, 17) val=(3272, 30, 17) test=(100, 30, 17) (stride=1, window_size=30, input_dim=17)
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+  clipping 66 extreme value(s) (0.005% of all feature values) to +/-10.0
+  clipping 28 extreme value(s) (0.003% of all feature values) to +/-10.0
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002.npz | train=(30811, 60, 24) val=(7608, 60, 24) test=(259, 60, 24) (stride=1, window_size=60, input_dim=24)
+[20:57:32] === STAGE OK: 1_preprocess (9.2s) ===
+[20:57:32] === STAGE START: 2_official_teacher ===
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[FD001][teacher] epoch 001 train_rmse=82.538 val_rmse=73.496 val_score=4446533.0
+[FD001][teacher] epoch 002 train_rmse=75.543 val_rmse=68.013 val_score=2643145.8
+[FD001][teacher] epoch 003 train_rmse=67.531 val_rmse=56.522 val_score=867379.4
+[FD001][teacher] epoch 004 train_rmse=52.715 val_rmse=37.472 val_score=111323.5
+[FD001][teacher] epoch 005 train_rmse=32.190 val_rmse=20.842 val_score=70702.1
+[FD001][teacher] epoch 006 train_rmse=21.919 val_rmse=15.158 val_score=14304.5
+[FD001][teacher] epoch 007 train_rmse=19.866 val_rmse=14.764 val_score=17208.0
+[FD001][teacher] epoch 008 train_rmse=19.103 val_rmse=14.463 val_score=18219.4
+[FD001][teacher] epoch 009 train_rmse=18.674 val_rmse=13.941 val_score=14190.8
+[FD001][teacher] epoch 010 train_rmse=18.441 val_rmse=14.430 val_score=17218.3
+[FD001][teacher] epoch 011 train_rmse=18.714 val_rmse=14.669 val_score=18315.0
+[FD001][teacher] epoch 012 train_rmse=18.560 val_rmse=15.054 val_score=19455.2
+[FD001][teacher] epoch 013 train_rmse=18.271 val_rmse=14.936 val_score=21094.9
+[FD001][teacher] epoch 014 train_rmse=18.274 val_rmse=15.560 val_score=27082.7
+[FD001][teacher] epoch 015 train_rmse=18.132 val_rmse=14.530 val_score=19126.0
+[FD001][teacher] epoch 016 train_rmse=18.515 val_rmse=13.456 val_score=16525.0
+[FD001][teacher] epoch 017 train_rmse=18.226 val_rmse=15.024 val_score=28427.4
+[FD001][teacher] epoch 018 train_rmse=17.961 val_rmse=14.559 val_score=21284.8
+[FD001][teacher] epoch 019 train_rmse=17.847 val_rmse=16.004 val_score=30154.0
+[FD001][teacher] epoch 020 train_rmse=17.324 val_rmse=15.480 val_score=25896.8
+[FD001][teacher] epoch 021 train_rmse=17.934 val_rmse=14.388 val_score=18021.5
+[FD001][teacher] epoch 022 train_rmse=17.921 val_rmse=16.461 val_score=37256.4
+[FD001][teacher] epoch 023 train_rmse=18.034 val_rmse=15.738 val_score=27530.2
+[FD001][teacher] epoch 024 train_rmse=17.452 val_rmse=15.982 val_score=28972.4
+[FD001][teacher] epoch 025 train_rmse=17.156 val_rmse=16.849 val_score=41557.3
+[FD001][teacher] epoch 026 train_rmse=17.648 val_rmse=16.610 val_score=39014.6
+[FD001][teacher] epoch 027 train_rmse=17.797 val_rmse=15.378 val_score=22418.7
+[FD001][teacher] epoch 028 train_rmse=17.622 val_rmse=17.155 val_score=35235.5
+[FD001][teacher] epoch 029 train_rmse=16.978 val_rmse=17.271 val_score=34743.1
+[FD001][teacher] epoch 030 train_rmse=17.250 val_rmse=16.709 val_score=40486.4
+[FD001][teacher] epoch 031 train_rmse=17.438 val_rmse=19.628 val_score=70067.1
+[FD001][teacher] early stopping at epoch 31
+[FD001][teacher] TEST rmse=13.785 score=291.2
+[FD001][teacher] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\teacher_FD001.pt
+[FD002][teacher] epoch 001 train_rmse=79.965 val_rmse=76.508 val_score=17092376.0
+[FD002][teacher] epoch 002 train_rmse=76.266 val_rmse=73.939 val_score=13500832.0
+[FD002][teacher] epoch 003 train_rmse=72.276 val_rmse=67.942 val_score=7668273.0
+[FD002][teacher] epoch 004 train_rmse=63.724 val_rmse=55.011 val_score=2150606.5
+[FD002][teacher] epoch 005 train_rmse=47.730 val_rmse=31.903 val_score=158581.1
+[FD002][teacher] epoch 006 train_rmse=31.390 val_rmse=21.432 val_score=52647.2
+[FD002][teacher] epoch 007 train_rmse=27.657 val_rmse=15.178 val_score=27636.4
+[FD002][teacher] epoch 008 train_rmse=25.404 val_rmse=15.791 val_score=26716.6
+[FD002][teacher] epoch 009 train_rmse=25.271 val_rmse=14.945 val_score=25360.2
+[FD002][teacher] epoch 010 train_rmse=25.092 val_rmse=14.945 val_score=26000.0
+[FD002][teacher] epoch 011 train_rmse=25.178 val_rmse=14.454 val_score=25503.4
+[FD002][teacher] epoch 012 train_rmse=25.040 val_rmse=14.622 val_score=25598.8
+[FD002][teacher] epoch 013 train_rmse=24.901 val_rmse=14.788 val_score=26084.5
+[FD002][teacher] epoch 014 train_rmse=24.791 val_rmse=13.897 val_score=24771.1
+[FD002][teacher] epoch 015 train_rmse=24.618 val_rmse=14.607 val_score=24948.9
+[FD002][teacher] epoch 016 train_rmse=24.921 val_rmse=13.926 val_score=23898.4
+[FD002][teacher] epoch 017 train_rmse=24.898 val_rmse=13.700 val_score=24195.6
+[FD002][teacher] epoch 018 train_rmse=24.623 val_rmse=14.417 val_score=25282.4
+[FD002][teacher] epoch 019 train_rmse=24.511 val_rmse=15.046 val_score=27560.3
+[FD002][teacher] epoch 020 train_rmse=24.471 val_rmse=14.736 val_score=26918.6
+[FD002][teacher] epoch 021 train_rmse=24.735 val_rmse=16.198 val_score=28778.9
+[FD002][teacher] epoch 022 train_rmse=24.652 val_rmse=14.690 val_score=27627.3
+[FD002][teacher] epoch 023 train_rmse=24.770 val_rmse=14.614 val_score=28609.3
+[FD002][teacher] epoch 024 train_rmse=24.566 val_rmse=14.885 val_score=25629.6
+[FD002][teacher] epoch 025 train_rmse=24.390 val_rmse=14.737 val_score=25942.2
+[FD002][teacher] epoch 026 train_rmse=24.738 val_rmse=15.659 val_score=26740.5
+[FD002][teacher] epoch 027 train_rmse=24.516 val_rmse=14.984 val_score=28856.4
+[FD002][teacher] epoch 028 train_rmse=24.655 val_rmse=15.574 val_score=28868.2
+[FD002][teacher] epoch 029 train_rmse=24.076 val_rmse=14.534 val_score=26035.4
+[FD002][teacher] epoch 030 train_rmse=24.285 val_rmse=14.291 val_score=27150.7
+[FD002][teacher] epoch 031 train_rmse=24.808 val_rmse=18.126 val_score=37441.5
+[FD002][teacher] epoch 032 train_rmse=24.693 val_rmse=14.598 val_score=27433.0
+[FD002][teacher] early stopping at epoch 32
+[FD002][teacher] TEST rmse=12.688 score=715.0
+[FD002][teacher] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\teacher_FD002.pt
+[20:59:20] === STAGE OK: 2_official_teacher (108.6s) ===
+[20:59:20] === STAGE START: 3_official_student_kd_and_nokd ===
+[FD001][student] epoch 001 task=91.285 soft=89.899 feat=1.216 total=72.855 | val_rmse=86.017 val_score=13707994.0
+[FD001][student] epoch 002 task=89.038 soft=87.648 feat=1.102 total=71.034 | val_rmse=83.189 val_score=10654756.0
+[FD001][student] epoch 003 task=84.937 soft=83.553 feat=0.913 total=67.717 | val_rmse=78.305 val_score=6907567.0
+[FD001][student] epoch 004 task=79.946 soft=78.589 feat=0.740 total=63.698 | val_rmse=73.195 val_score=4325959.0
+[FD001][student] epoch 005 task=74.240 soft=72.909 feat=0.689 total=59.130 | val_rmse=66.577 val_score=2335060.2
+[FD001][student] epoch 006 task=66.656 soft=65.316 feat=0.690 total=53.061 | val_rmse=57.990 val_score=1012619.9
+[FD001][student] epoch 007 task=58.717 soft=57.378 feat=0.688 total=46.710 | val_rmse=49.952 val_score=444555.4
+[FD001][student] epoch 008 task=51.797 soft=50.447 feat=0.662 total=41.165 | val_rmse=43.969 val_score=235255.8
+[FD001][student] epoch 009 task=47.346 soft=46.004 feat=0.614 total=37.597 | val_rmse=40.689 val_score=165323.1
+[FD001][student] epoch 010 task=45.217 soft=43.864 feat=0.586 total=35.885 | val_rmse=39.721 val_score=148615.3
+[FD001][student] epoch 011 task=40.764 soft=39.361 feat=0.535 total=32.298 | val_rmse=30.530 val_score=52365.7
+[FD001][student] epoch 012 task=33.779 soft=32.363 feat=0.456 total=26.690 | val_rmse=23.292 val_score=22818.1
+[FD001][student] epoch 013 task=29.634 soft=28.121 feat=0.391 total=23.331 | val_rmse=19.127 val_score=16484.0
+[FD001][student] epoch 014 task=27.825 soft=26.270 feat=0.349 total=21.863 | val_rmse=17.484 val_score=14750.5
+[FD001][student] epoch 015 task=27.388 soft=25.739 feat=0.334 total=21.483 | val_rmse=17.147 val_score=13844.5
+[FD001][student] epoch 016 task=26.895 soft=25.235 feat=0.308 total=21.079 | val_rmse=15.649 val_score=14541.2
+[FD001][student] epoch 017 task=25.621 soft=23.989 feat=0.280 total=20.063 | val_rmse=14.735 val_score=11713.6
+[FD001][student] epoch 018 task=25.449 soft=23.758 feat=0.264 total=19.905 | val_rmse=14.193 val_score=12293.4
+[FD001][student] epoch 019 task=25.239 soft=23.608 feat=0.262 total=19.754 | val_rmse=14.336 val_score=11565.9
+[FD001][student] epoch 020 task=25.182 soft=23.422 feat=0.255 total=19.669 | val_rmse=14.068 val_score=11534.5
+[FD001][student] epoch 021 task=25.314 soft=23.684 feat=0.257 total=19.814 | val_rmse=14.348 val_score=15661.9
+[FD001][student] epoch 022 task=24.879 soft=23.118 feat=0.247 total=19.425 | val_rmse=13.995 val_score=13982.9
+[FD001][student] epoch 023 task=24.469 soft=22.773 feat=0.244 total=19.115 | val_rmse=13.816 val_score=13435.7
+[FD001][student] epoch 024 task=24.635 soft=22.825 feat=0.237 total=19.212 | val_rmse=14.009 val_score=12475.9
+[FD001][student] epoch 025 task=24.398 soft=22.605 feat=0.237 total=19.028 | val_rmse=13.708 val_score=12990.8
+[FD001][student] epoch 026 task=24.403 soft=22.725 feat=0.241 total=19.067 | val_rmse=13.706 val_score=11140.5
+[FD001][student] epoch 027 task=24.591 soft=22.801 feat=0.238 total=19.183 | val_rmse=13.602 val_score=11285.5
+[FD001][student] epoch 028 task=24.587 soft=22.794 feat=0.231 total=19.178 | val_rmse=13.395 val_score=12006.9
+[FD001][student] epoch 029 task=24.248 soft=22.543 feat=0.229 total=18.933 | val_rmse=13.295 val_score=11386.0
+[FD001][student] epoch 030 task=24.164 soft=22.316 feat=0.225 total=18.822 | val_rmse=13.322 val_score=11863.6
+[FD001][student] epoch 031 task=24.354 soft=22.556 feat=0.232 total=18.990 | val_rmse=13.368 val_score=12550.8
+[FD001][student] epoch 032 task=24.321 soft=22.468 feat=0.228 total=18.946 | val_rmse=13.219 val_score=11038.8
+[FD001][student] epoch 033 task=24.328 soft=22.582 feat=0.227 total=18.984 | val_rmse=13.366 val_score=10911.1
+[FD001][student] epoch 034 task=23.792 soft=22.084 feat=0.225 total=18.566 | val_rmse=13.281 val_score=12368.5
+[FD001][student] epoch 035 task=24.357 soft=22.646 feat=0.220 total=19.016 | val_rmse=13.162 val_score=10900.4
+[FD001][student] epoch 036 task=24.315 soft=22.504 feat=0.227 total=18.954 | val_rmse=13.234 val_score=11996.7
+[FD001][student] epoch 037 task=23.897 soft=22.098 feat=0.221 total=18.622 | val_rmse=13.760 val_score=11136.7
+[FD001][student] epoch 038 task=24.185 soft=22.451 feat=0.220 total=18.872 | val_rmse=13.191 val_score=11208.8
+[FD001][student] epoch 039 task=23.860 soft=22.150 feat=0.216 total=18.618 | val_rmse=13.402 val_score=11190.8
+[FD001][student] epoch 040 task=24.030 soft=22.244 feat=0.213 total=18.731 | val_rmse=13.114 val_score=11085.0
+[FD001][student] epoch 041 task=23.886 soft=22.140 feat=0.217 total=18.628 | val_rmse=13.097 val_score=12412.0
+[FD001][student] epoch 042 task=23.974 soft=22.298 feat=0.215 total=18.720 | val_rmse=13.202 val_score=12888.5
+[FD001][student] epoch 043 task=24.005 soft=22.158 feat=0.209 total=18.691 | val_rmse=13.177 val_score=11199.3
+[FD001][student] epoch 044 task=23.984 soft=22.197 feat=0.209 total=18.693 | val_rmse=13.029 val_score=12293.7
+[FD001][student] epoch 045 task=23.786 soft=22.052 feat=0.206 total=18.550 | val_rmse=12.909 val_score=11365.7
+[FD001][student] epoch 046 task=24.239 soft=22.458 feat=0.220 total=18.901 | val_rmse=13.099 val_score=11054.8
+[FD001][student] epoch 047 task=23.827 soft=22.103 feat=0.211 total=18.586 | val_rmse=13.088 val_score=10743.8
+[FD001][student] epoch 048 task=23.849 soft=22.200 feat=0.209 total=18.626 | val_rmse=13.187 val_score=10648.6
+[FD001][student] epoch 049 task=23.602 soft=21.900 feat=0.207 total=18.412 | val_rmse=12.977 val_score=10709.0
+[FD001][student] epoch 050 task=23.754 soft=22.008 feat=0.204 total=18.520 | val_rmse=13.040 val_score=10788.8
+[FD001][student] epoch 051 task=23.728 soft=21.985 feat=0.209 total=18.501 | val_rmse=12.942 val_score=11834.6
+[FD001][student] epoch 052 task=24.001 soft=22.214 feat=0.210 total=18.707 | val_rmse=13.187 val_score=14502.5
+[FD001][student] epoch 053 task=23.796 soft=22.114 feat=0.206 total=18.573 | val_rmse=13.046 val_score=10771.8
+[FD001][student] epoch 054 task=23.729 soft=21.976 feat=0.204 total=18.498 | val_rmse=13.102 val_score=11628.0
+[FD001][student] epoch 055 task=23.767 soft=22.039 feat=0.202 total=18.536 | val_rmse=12.994 val_score=11531.4
+[FD001][student] epoch 056 task=23.763 soft=22.067 feat=0.207 total=18.543 | val_rmse=13.183 val_score=14415.2
+[FD001][student] epoch 057 task=23.876 soft=22.164 feat=0.213 total=18.630 | val_rmse=13.204 val_score=10091.7
+[FD001][student] epoch 058 task=23.509 soft=21.751 feat=0.207 total=18.321 | val_rmse=13.126 val_score=13117.9
+[FD001][student] epoch 059 task=23.639 soft=21.846 feat=0.201 total=18.413 | val_rmse=12.930 val_score=11180.0
+[FD001][student] epoch 060 task=23.431 soft=21.747 feat=0.202 total=18.280 | val_rmse=13.044 val_score=11854.7
+[FD001][student] early stopping at epoch 60
+[FD001][student] TEST rmse=13.693 score=313.2
+[FD001][student] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\student_FD001.pt
+[FD001][student-no-kd] epoch 001 train_rmse=89.973 val_rmse=85.553 val_score=13022488.0
+[FD001][student-no-kd] epoch 002 train_rmse=88.187 val_rmse=83.028 val_score=10402284.0
+[FD001][student-no-kd] epoch 003 train_rmse=84.244 val_rmse=78.264 val_score=6878142.0
+[FD001][student-no-kd] epoch 004 train_rmse=78.993 val_rmse=72.494 val_score=4058489.2
+[FD001][student-no-kd] epoch 005 train_rmse=72.331 val_rmse=64.793 val_score=1965742.6
+[FD001][student-no-kd] epoch 006 train_rmse=63.659 val_rmse=54.827 val_score=732499.2
+[FD001][student-no-kd] epoch 007 train_rmse=54.200 val_rmse=45.591 val_score=277850.3
+[FD001][student-no-kd] epoch 008 train_rmse=46.653 val_rmse=38.694 val_score=132043.5
+[FD001][student-no-kd] epoch 009 train_rmse=41.548 val_rmse=35.121 val_score=88144.7
+[FD001][student-no-kd] epoch 010 train_rmse=39.480 val_rmse=34.079 val_score=78342.6
+[FD001][student-no-kd] epoch 011 train_rmse=35.208 val_rmse=24.283 val_score=25952.9
+[FD001][student-no-kd] epoch 012 train_rmse=28.807 val_rmse=18.416 val_score=14604.4
+[FD001][student-no-kd] epoch 013 train_rmse=26.119 val_rmse=15.917 val_score=13775.8
+[FD001][student-no-kd] epoch 014 train_rmse=25.083 val_rmse=15.898 val_score=17542.8
+[FD001][student-no-kd] epoch 015 train_rmse=25.103 val_rmse=15.130 val_score=12979.9
+[FD001][student-no-kd] epoch 016 train_rmse=25.093 val_rmse=14.471 val_score=11333.4
+[FD001][student-no-kd] epoch 017 train_rmse=24.200 val_rmse=14.728 val_score=12345.1
+[FD001][student-no-kd] epoch 018 train_rmse=24.246 val_rmse=14.051 val_score=11461.9
+[FD001][student-no-kd] epoch 019 train_rmse=24.400 val_rmse=14.079 val_score=12802.4
+[FD001][student-no-kd] epoch 020 train_rmse=24.069 val_rmse=13.901 val_score=10973.5
+[FD001][student-no-kd] epoch 021 train_rmse=24.317 val_rmse=13.892 val_score=12230.4
+[FD001][student-no-kd] epoch 022 train_rmse=24.176 val_rmse=13.884 val_score=13383.9
+[FD001][student-no-kd] epoch 023 train_rmse=24.125 val_rmse=13.726 val_score=9505.7
+[FD001][student-no-kd] epoch 024 train_rmse=24.132 val_rmse=13.433 val_score=9863.9
+[FD001][student-no-kd] epoch 025 train_rmse=24.090 val_rmse=13.438 val_score=10297.4
+[FD001][student-no-kd] epoch 026 train_rmse=23.927 val_rmse=13.543 val_score=12668.9
+[FD001][student-no-kd] epoch 027 train_rmse=24.066 val_rmse=13.347 val_score=10576.7
+[FD001][student-no-kd] epoch 028 train_rmse=24.054 val_rmse=13.438 val_score=11709.5
+[FD001][student-no-kd] epoch 029 train_rmse=23.806 val_rmse=13.353 val_score=11303.0
+[FD001][student-no-kd] epoch 030 train_rmse=23.733 val_rmse=13.202 val_score=9818.4
+[FD001][student-no-kd] epoch 031 train_rmse=23.959 val_rmse=13.107 val_score=10882.4
+[FD001][student-no-kd] epoch 032 train_rmse=24.104 val_rmse=13.312 val_score=10613.3
+[FD001][student-no-kd] epoch 033 train_rmse=23.540 val_rmse=13.617 val_score=11320.2
+[FD001][student-no-kd] epoch 034 train_rmse=23.720 val_rmse=13.308 val_score=11338.4
+[FD001][student-no-kd] epoch 035 train_rmse=23.565 val_rmse=12.915 val_score=9071.3
+[FD001][student-no-kd] epoch 036 train_rmse=23.644 val_rmse=12.927 val_score=8431.0
+[FD001][student-no-kd] epoch 037 train_rmse=23.569 val_rmse=13.147 val_score=10120.6
+[FD001][student-no-kd] epoch 038 train_rmse=23.487 val_rmse=13.396 val_score=11677.3
+[FD001][student-no-kd] epoch 039 train_rmse=23.535 val_rmse=13.035 val_score=9331.8
+[FD001][student-no-kd] epoch 040 train_rmse=23.409 val_rmse=12.946 val_score=9356.7
+[FD001][student-no-kd] epoch 041 train_rmse=23.348 val_rmse=13.511 val_score=11816.9
+[FD001][student-no-kd] epoch 042 train_rmse=23.629 val_rmse=13.060 val_score=9736.2
+[FD001][student-no-kd] epoch 043 train_rmse=23.472 val_rmse=12.975 val_score=9672.4
+[FD001][student-no-kd] epoch 044 train_rmse=23.015 val_rmse=12.632 val_score=8661.5
+[FD001][student-no-kd] epoch 045 train_rmse=23.163 val_rmse=12.761 val_score=9274.8
+[FD001][student-no-kd] epoch 046 train_rmse=23.480 val_rmse=12.814 val_score=8193.4
+[FD001][student-no-kd] epoch 047 train_rmse=23.462 val_rmse=12.853 val_score=9321.5
+[FD001][student-no-kd] epoch 048 train_rmse=23.277 val_rmse=12.834 val_score=8681.7
+[FD001][student-no-kd] epoch 049 train_rmse=23.138 val_rmse=12.858 val_score=8631.6
+[FD001][student-no-kd] epoch 050 train_rmse=23.410 val_rmse=12.946 val_score=8935.7
+[FD001][student-no-kd] epoch 051 train_rmse=23.395 val_rmse=13.295 val_score=11130.4
+[FD001][student-no-kd] epoch 052 train_rmse=22.839 val_rmse=12.955 val_score=9297.8
+[FD001][student-no-kd] epoch 053 train_rmse=23.318 val_rmse=12.642 val_score=8288.6
+[FD001][student-no-kd] epoch 054 train_rmse=23.349 val_rmse=13.103 val_score=10360.9
+[FD001][student-no-kd] epoch 055 train_rmse=23.082 val_rmse=12.886 val_score=9078.4
+[FD001][student-no-kd] epoch 056 train_rmse=23.331 val_rmse=13.231 val_score=8663.1
+[FD001][student-no-kd] epoch 057 train_rmse=23.432 val_rmse=12.580 val_score=7581.8
+[FD001][student-no-kd] epoch 058 train_rmse=22.792 val_rmse=13.117 val_score=10550.2
+[FD001][student-no-kd] epoch 059 train_rmse=23.180 val_rmse=12.570 val_score=9279.0
+[FD001][student-no-kd] epoch 060 train_rmse=23.096 val_rmse=12.938 val_score=9927.7
+[FD001][student-no-kd] epoch 061 train_rmse=23.395 val_rmse=12.789 val_score=8175.8
+[FD001][student-no-kd] epoch 062 train_rmse=23.523 val_rmse=12.928 val_score=8562.1
+[FD001][student-no-kd] epoch 063 train_rmse=23.194 val_rmse=13.212 val_score=10755.2
+[FD001][student-no-kd] epoch 064 train_rmse=22.989 val_rmse=12.838 val_score=8739.6
+[FD001][student-no-kd] epoch 065 train_rmse=23.214 val_rmse=12.776 val_score=9233.4
+[FD001][student-no-kd] epoch 066 train_rmse=22.895 val_rmse=12.476 val_score=7913.3
+[FD001][student-no-kd] epoch 067 train_rmse=22.905 val_rmse=13.122 val_score=11335.5
+[FD001][student-no-kd] epoch 068 train_rmse=22.750 val_rmse=12.982 val_score=9886.9
+[FD001][student-no-kd] epoch 069 train_rmse=22.808 val_rmse=12.875 val_score=9223.8
+[FD001][student-no-kd] epoch 070 train_rmse=22.861 val_rmse=12.789 val_score=9261.5
+[FD001][student-no-kd] epoch 071 train_rmse=22.948 val_rmse=12.818 val_score=8747.2
+[FD001][student-no-kd] epoch 072 train_rmse=22.958 val_rmse=12.768 val_score=8451.0
+[FD001][student-no-kd] epoch 073 train_rmse=22.954 val_rmse=13.527 val_score=13142.2
+[FD001][student-no-kd] epoch 074 train_rmse=22.751 val_rmse=12.926 val_score=9392.6
+[FD001][student-no-kd] epoch 075 train_rmse=22.670 val_rmse=12.823 val_score=8954.3
+[FD001][student-no-kd] epoch 076 train_rmse=22.599 val_rmse=13.188 val_score=9801.2
+[FD001][student-no-kd] epoch 077 train_rmse=23.251 val_rmse=13.434 val_score=10529.5
+[FD001][student-no-kd] epoch 078 train_rmse=22.942 val_rmse=13.236 val_score=10140.4
+[FD001][student-no-kd] epoch 079 train_rmse=22.493 val_rmse=13.062 val_score=10055.0
+[FD001][student-no-kd] epoch 080 train_rmse=22.660 val_rmse=12.864 val_score=9128.8
+[FD001][student-no-kd] epoch 081 train_rmse=22.800 val_rmse=13.591 val_score=10942.6
+[FD001][student-no-kd] early stopping at epoch 81
+[FD001][student-no-kd] TEST rmse=13.733 score=280.7
+[FD001][student-no-kd] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\student_no_kd_FD001.pt
+[FD002][student] epoch 001 task=81.701 soft=80.302 feat=1.256 total=65.193 | val_rmse=78.803 val_score=20987488.0
+[FD002][student] epoch 002 task=77.357 soft=75.939 feat=0.885 total=61.637 | val_rmse=74.611 val_score=14363894.0
+[FD002][student] epoch 003 task=72.624 soft=71.188 feat=0.678 total=57.804 | val_rmse=69.378 val_score=8805199.0
+[FD002][student] epoch 004 task=66.450 soft=64.980 feat=0.628 total=52.845 | val_rmse=61.673 val_score=4208057.0
+[FD002][student] epoch 005 task=57.349 soft=55.813 feat=0.554 total=45.529 | val_rmse=50.592 val_score=1368850.0
+[FD002][student] epoch 006 task=45.852 soft=44.161 feat=0.435 total=36.261 | val_rmse=35.904 val_score=264709.0
+[FD002][student] epoch 007 task=34.154 soft=32.249 feat=0.328 total=26.817 | val_rmse=22.948 val_score=51909.0
+[FD002][student] epoch 008 task=27.637 soft=25.476 feat=0.237 total=21.509 | val_rmse=16.551 val_score=27058.8
+[FD002][student] epoch 009 task=25.844 soft=23.660 feat=0.207 total=20.061 | val_rmse=16.322 val_score=25765.6
+[FD002][student] epoch 010 task=25.661 soft=23.471 feat=0.199 total=19.911 | val_rmse=15.569 val_score=24825.1
+[FD002][student] epoch 011 task=25.419 soft=23.265 feat=0.197 total=19.728 | val_rmse=15.170 val_score=23046.0
+[FD002][student] epoch 012 task=25.039 soft=22.790 feat=0.189 total=19.394 | val_rmse=14.957 val_score=21858.4
+[FD002][student] epoch 013 task=25.000 soft=22.818 feat=0.184 total=19.382 | val_rmse=14.662 val_score=22092.9
+[FD002][student] epoch 014 task=24.900 soft=22.705 feat=0.179 total=19.297 | val_rmse=13.855 val_score=22063.5
+[FD002][student] epoch 015 task=24.853 soft=22.733 feat=0.175 total=19.282 | val_rmse=14.084 val_score=21622.4
+[FD002][student] epoch 016 task=24.903 soft=22.744 feat=0.178 total=19.311 | val_rmse=14.280 val_score=22675.0
+[FD002][student] epoch 017 task=24.177 soft=21.979 feat=0.177 total=18.718 | val_rmse=14.344 val_score=23531.0
+[FD002][student] epoch 018 task=23.479 soft=21.281 feat=0.172 total=18.158 | val_rmse=13.755 val_score=21286.7
+[FD002][student] epoch 019 task=23.677 soft=21.430 feat=0.167 total=18.301 | val_rmse=14.102 val_score=21897.1
+[FD002][student] epoch 020 task=23.254 soft=21.047 feat=0.164 total=17.974 | val_rmse=13.741 val_score=21487.9
+[FD002][student] epoch 021 task=23.373 soft=21.155 feat=0.167 total=18.066 | val_rmse=13.568 val_score=22169.3
+[FD002][student] epoch 022 task=23.484 soft=21.238 feat=0.160 total=18.145 | val_rmse=13.597 val_score=20955.3
+[FD002][student] epoch 023 task=23.429 soft=21.194 feat=0.160 total=18.104 | val_rmse=14.615 val_score=22275.2
+[FD002][student] epoch 024 task=23.057 soft=20.841 feat=0.152 total=17.811 | val_rmse=13.599 val_score=22541.2
+[FD002][student] epoch 025 task=23.039 soft=20.810 feat=0.149 total=17.792 | val_rmse=13.547 val_score=21932.5
+[FD002][student] epoch 026 task=23.320 soft=21.094 feat=0.154 total=18.019 | val_rmse=14.412 val_score=22228.4
+[FD002][student] epoch 027 task=23.312 soft=21.140 feat=0.153 total=18.029 | val_rmse=13.588 val_score=22805.4
+[FD002][student] epoch 028 task=23.311 soft=21.107 feat=0.148 total=18.017 | val_rmse=13.898 val_score=21220.2
+[FD002][student] epoch 029 task=23.116 soft=20.888 feat=0.142 total=17.853 | val_rmse=13.622 val_score=21751.4
+[FD002][student] epoch 030 task=22.923 soft=20.715 feat=0.139 total=17.704 | val_rmse=13.737 val_score=21299.4
+[FD002][student] epoch 031 task=22.908 soft=20.761 feat=0.143 total=17.711 | val_rmse=13.889 val_score=22995.1
+[FD002][student] epoch 032 task=22.946 soft=20.818 feat=0.142 total=17.747 | val_rmse=14.455 val_score=22184.5
+[FD002][student] epoch 033 task=22.967 soft=20.847 feat=0.141 total=17.766 | val_rmse=13.467 val_score=23544.8
+[FD002][student] epoch 034 task=22.860 soft=20.688 feat=0.136 total=17.664 | val_rmse=13.714 val_score=21790.3
+[FD002][student] epoch 035 task=22.795 soft=20.653 feat=0.133 total=17.620 | val_rmse=13.977 val_score=21697.5
+[FD002][student] epoch 036 task=23.111 soft=20.983 feat=0.143 total=17.879 | val_rmse=13.547 val_score=23742.1
+[FD002][student] epoch 037 task=23.110 soft=20.926 feat=0.140 total=17.861 | val_rmse=13.926 val_score=22448.0
+[FD002][student] epoch 038 task=23.083 soft=20.957 feat=0.137 total=17.856 | val_rmse=13.772 val_score=22364.0
+[FD002][student] epoch 039 task=22.841 soft=20.713 feat=0.135 total=17.661 | val_rmse=13.974 val_score=21431.8
+[FD002][student] epoch 040 task=22.661 soft=20.543 feat=0.131 total=17.520 | val_rmse=13.956 val_score=21708.8
+[FD002][student] epoch 041 task=22.750 soft=20.624 feat=0.138 total=17.590 | val_rmse=14.017 val_score=23561.1
+[FD002][student] epoch 042 task=22.902 soft=20.778 feat=0.135 total=17.711 | val_rmse=14.698 val_score=22852.3
+[FD002][student] epoch 043 task=22.734 soft=20.620 feat=0.133 total=17.579 | val_rmse=13.507 val_score=22591.6
+[FD002][student] epoch 044 task=22.571 soft=20.479 feat=0.133 total=17.456 | val_rmse=14.403 val_score=22178.0
+[FD002][student] epoch 045 task=22.643 soft=20.563 feat=0.128 total=17.516 | val_rmse=13.796 val_score=21322.6
+[FD002][student] epoch 046 task=22.727 soft=20.608 feat=0.137 total=17.573 | val_rmse=14.077 val_score=21237.2
+[FD002][student] epoch 047 task=22.717 soft=20.600 feat=0.134 total=17.566 | val_rmse=14.347 val_score=21700.9
+[FD002][student] epoch 048 task=22.523 soft=20.426 feat=0.133 total=17.416 | val_rmse=13.642 val_score=21807.6
+[FD002][student] early stopping at epoch 48
+[FD002][student] TEST rmse=12.068 score=656.8
+[FD002][student] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\student_FD002.pt
+[FD002][student-no-kd] epoch 001 train_rmse=82.397 val_rmse=80.853 val_score=25289136.0
+[FD002][student-no-kd] epoch 002 train_rmse=80.401 val_rmse=79.298 val_score=22006144.0
+[FD002][student-no-kd] epoch 003 train_rmse=78.243 val_rmse=76.398 val_score=16925516.0
+[FD002][student-no-kd] epoch 004 train_rmse=74.286 val_rmse=71.187 val_score=10447418.0
+[FD002][student-no-kd] epoch 005 train_rmse=67.707 val_rmse=62.687 val_score=4599346.0
+[FD002][student-no-kd] epoch 006 train_rmse=57.790 val_rmse=50.104 val_score=1282030.5
+[FD002][student-no-kd] epoch 007 train_rmse=46.625 val_rmse=37.558 val_score=322861.3
+[FD002][student-no-kd] epoch 008 train_rmse=38.096 val_rmse=28.615 val_score=109182.3
+[FD002][student-no-kd] epoch 009 train_rmse=33.384 val_rmse=23.674 val_score=57801.1
+[FD002][student-no-kd] epoch 010 train_rmse=31.318 val_rmse=21.805 val_score=45901.2
+[FD002][student-no-kd] epoch 011 train_rmse=27.731 val_rmse=17.109 val_score=28482.4
+[FD002][student-no-kd] epoch 012 train_rmse=25.901 val_rmse=14.187 val_score=24165.6
+[FD002][student-no-kd] epoch 013 train_rmse=24.328 val_rmse=14.936 val_score=23983.1
+[FD002][student-no-kd] epoch 014 train_rmse=23.769 val_rmse=14.284 val_score=23746.6
+[FD002][student-no-kd] epoch 015 train_rmse=23.702 val_rmse=14.275 val_score=23127.0
+[FD002][student-no-kd] epoch 016 train_rmse=23.888 val_rmse=13.916 val_score=23270.5
+[FD002][student-no-kd] epoch 017 train_rmse=23.401 val_rmse=13.975 val_score=22325.0
+[FD002][student-no-kd] epoch 018 train_rmse=23.207 val_rmse=14.035 val_score=21542.2
+[FD002][student-no-kd] epoch 019 train_rmse=23.313 val_rmse=13.852 val_score=20751.0
+[FD002][student-no-kd] epoch 020 train_rmse=23.341 val_rmse=13.979 val_score=21194.1
+[FD002][student-no-kd] epoch 021 train_rmse=23.329 val_rmse=14.506 val_score=21428.8
+[FD002][student-no-kd] epoch 022 train_rmse=23.399 val_rmse=14.359 val_score=21269.2
+[FD002][student-no-kd] epoch 023 train_rmse=23.219 val_rmse=14.023 val_score=21322.3
+[FD002][student-no-kd] epoch 024 train_rmse=23.226 val_rmse=14.286 val_score=21698.7
+[FD002][student-no-kd] epoch 025 train_rmse=22.980 val_rmse=13.866 val_score=21202.7
+[FD002][student-no-kd] epoch 026 train_rmse=23.199 val_rmse=13.895 val_score=20553.7
+[FD002][student-no-kd] epoch 027 train_rmse=23.242 val_rmse=14.002 val_score=20435.3
+[FD002][student-no-kd] epoch 028 train_rmse=23.122 val_rmse=13.795 val_score=21691.2
+[FD002][student-no-kd] epoch 029 train_rmse=22.917 val_rmse=14.019 val_score=20893.6
+[FD002][student-no-kd] epoch 030 train_rmse=22.839 val_rmse=13.801 val_score=20863.9
+[FD002][student-no-kd] epoch 031 train_rmse=22.775 val_rmse=14.840 val_score=22211.5
+[FD002][student-no-kd] epoch 032 train_rmse=22.889 val_rmse=13.451 val_score=21706.8
+[FD002][student-no-kd] epoch 033 train_rmse=22.897 val_rmse=13.519 val_score=20837.3
+[FD002][student-no-kd] epoch 034 train_rmse=22.874 val_rmse=13.471 val_score=20924.8
+[FD002][student-no-kd] epoch 035 train_rmse=22.748 val_rmse=13.972 val_score=20519.3
+[FD002][student-no-kd] epoch 036 train_rmse=22.716 val_rmse=13.776 val_score=22440.2
+[FD002][student-no-kd] epoch 037 train_rmse=22.920 val_rmse=13.953 val_score=22252.6
+[FD002][student-no-kd] epoch 038 train_rmse=22.763 val_rmse=13.800 val_score=22101.3
+[FD002][student-no-kd] epoch 039 train_rmse=22.669 val_rmse=14.031 val_score=21213.5
+[FD002][student-no-kd] epoch 040 train_rmse=22.682 val_rmse=14.012 val_score=21302.0
+[FD002][student-no-kd] epoch 041 train_rmse=22.813 val_rmse=13.737 val_score=22422.6
+[FD002][student-no-kd] epoch 042 train_rmse=22.786 val_rmse=13.673 val_score=22504.7
+[FD002][student-no-kd] epoch 043 train_rmse=22.705 val_rmse=13.490 val_score=20766.1
+[FD002][student-no-kd] epoch 044 train_rmse=22.437 val_rmse=14.315 val_score=21303.1
+[FD002][student-no-kd] epoch 045 train_rmse=22.573 val_rmse=13.899 val_score=21394.0
+[FD002][student-no-kd] epoch 046 train_rmse=22.495 val_rmse=14.026 val_score=21442.2
+[FD002][student-no-kd] epoch 047 train_rmse=22.643 val_rmse=14.301 val_score=21148.5
+[FD002][student-no-kd] early stopping at epoch 47
+[FD002][student-no-kd] TEST rmse=12.911 score=704.6
+[FD002][student-no-kd] saved checkpoint -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\checkpoints\student_no_kd_FD002.pt
+[21:03:10] === STAGE OK: 3_official_student_kd_and_nokd (229.4s) ===
+[21:03:10] === STAGE START: 4_ensembles ===
+[FD001][teacher-ensemble] seed=42: trained test_rmse=13.785 test_score=291.2
+[FD001][teacher-ensemble] seed=43: trained test_rmse=15.201 test_score=429.0
+[FD001][teacher-ensemble] seed=44: trained test_rmse=14.310 test_score=365.9
+[FD001][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.702 test_score=307.8
+[FD001][student-ensemble] seed=42: trained test_rmse=13.245 test_score=285.3
+[FD001][student-ensemble] seed=43: trained test_rmse=14.317 test_score=307.0
+[FD001][student-ensemble] seed=44: trained test_rmse=12.157 test_score=215.8
+[FD001][student-ensemble] ENSEMBLE (3 members) test_rmse=12.615 test_score=234.4
+[FD002][teacher-ensemble] seed=42: trained test_rmse=12.688 test_score=715.0
+[FD002][teacher-ensemble] seed=43: trained test_rmse=13.052 test_score=848.9
+[FD002][teacher-ensemble] seed=44: trained test_rmse=13.070 test_score=732.1
+[FD002][teacher-ensemble] ENSEMBLE (3 members) test_rmse=12.439 test_score=694.3
+[FD002][student-ensemble] seed=42: trained test_rmse=12.661 test_score=672.2
+[FD002][student-ensemble] seed=43: trained test_rmse=12.494 test_score=625.4
+[FD002][student-ensemble] seed=44: trained test_rmse=12.457 test_score=665.9
+[FD002][student-ensemble] ENSEMBLE (3 members) test_rmse=12.356 test_score=632.5
+[21:14:08] === STAGE OK: 4_ensembles (657.7s) ===
+[21:14:08] === STAGE START: 5_final_evaluate ===
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[FD001] training a fresh LSTM baseline
+
+=== FD001 comparison ===
+                model subset      rmse      score  params  size_mb      flops  inference_ms
+Teacher (Transformer)  FD001 13.785460 291.223907  230977   0.8811  3452016.0        1.6337
+  Student (Distilled)  FD001 13.692518 313.240662    8945   0.0341   226608.0        1.2932
+      Student (No KD)  FD001 13.732713 280.700348    8945   0.0341   226608.0        1.2827
+Teacher (Ensemble x3)  FD001 13.702452 307.773224  692931   2.6433 10356048.0        5.3967
+Student (Ensemble x3)  FD001 12.614826 234.435349   26835   0.1024   679824.0        4.3980
+        LSTM Baseline  FD001 13.171636 283.180389  150145   0.5728  4324416.0        0.5541
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\comparison_FD001.csv
+config snapshot -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\comparison_FD001.config.json
+[FD002] training a fresh LSTM baseline
+
+=== FD002 comparison ===
+                model subset      rmse      score  params  size_mb     flops  inference_ms
+Teacher (Transformer)  FD002 12.687648 714.988342   27041   0.1032  837648.0        2.2431
+  Student (Distilled)  FD002 12.068094 656.759155    9057   0.0345  459408.0        1.1742
+      Student (No KD)  FD002 12.911153 704.550537    9057   0.0345  459408.0        1.5944
+Teacher (Ensemble x3)  FD002 12.438570 694.320801   81123   0.3095 2512944.0        6.0457
+Student (Ensemble x3)  FD002 12.356383 632.466614   27171   0.1036 1378224.0        4.7046
+        LSTM Baseline  FD002 12.113888 712.542603  153729   0.5864 8855616.0        0.6497
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\comparison_FD002.csv
+config snapshot -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\comparison_FD002.config.json
+[21:15:32] === STAGE OK: 5_final_evaluate (84.3s) ===
+[21:15:32] === STAGE START: 6_multi_seed_protocol ===
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[FD001][multi-seed-teacher] seed=42: val_rmse=13.456 test_rmse=13.785
+[FD001][multi-seed-teacher] seed=43: val_rmse=13.906 test_rmse=15.201
+[FD001][multi-seed-teacher] seed=44: val_rmse=13.372 test_rmse=14.310
+[FD001][multi-seed-teacher] seed=45: val_rmse=13.759 test_rmse=14.641
+[FD001][multi-seed-teacher] seed=46: val_rmse=14.274 test_rmse=15.201
+[FD001][multi-seed-teacher] seed=47: val_rmse=13.964 test_rmse=14.977
+[FD001][multi-seed-teacher] seed=48: val_rmse=13.850 test_rmse=14.623
+[FD001][multi-seed-teacher] seed=49: val_rmse=13.641 test_rmse=14.215
+[FD001][multi-seed-teacher] seed=50: val_rmse=14.370 test_rmse=14.264
+[FD001][multi-seed-teacher] seed=51: val_rmse=15.044 test_rmse=15.223
+[FD001][multi-seed-teacher] mean/std test_rmse across 10 runs: 14.644 +/- 0.499
+[FD001][multi-seed-teacher] SINGLE BEST (seed=44, chosen by val_rmse=13.372): test_rmse=14.310
+[FD001][multi-seed-teacher] ENSEMBLE (best 6-of-10 by val_rmse, seeds=[44, 42, 49, 45, 48, 43]): test_rmse=13.620
+[FD001][multi-seed-student] seed=42: val_rmse=12.431 test_rmse=13.245
+[FD001][multi-seed-student] seed=43: val_rmse=12.769 test_rmse=14.317
+[FD001][multi-seed-student] seed=44: val_rmse=12.974 test_rmse=12.157
+[FD001][multi-seed-student] seed=45: val_rmse=12.532 test_rmse=14.049
+[FD001][multi-seed-student] seed=46: val_rmse=13.016 test_rmse=14.074
+[FD001][multi-seed-student] seed=47: val_rmse=12.889 test_rmse=12.351
+[FD001][multi-seed-student] seed=48: val_rmse=12.847 test_rmse=14.626
+[FD001][multi-seed-student] seed=49: val_rmse=12.511 test_rmse=12.541
+[FD001][multi-seed-student] seed=50: val_rmse=12.564 test_rmse=12.843
+[FD001][multi-seed-student] seed=51: val_rmse=12.924 test_rmse=12.570
+[FD001][multi-seed-student] mean/std test_rmse across 10 runs: 13.277 +/- 0.911
+[FD001][multi-seed-student] SINGLE BEST (seed=42, chosen by val_rmse=12.431): test_rmse=13.245
+[FD001][multi-seed-student] ENSEMBLE (best 6-of-10 by val_rmse, seeds=[42, 49, 45, 50, 43, 48]): test_rmse=12.937
+[FD002][multi-seed-teacher] seed=42: val_rmse=13.700 test_rmse=12.688
+[FD002][multi-seed-teacher] seed=43: val_rmse=13.657 test_rmse=13.052
+[FD002][multi-seed-teacher] seed=44: val_rmse=14.247 test_rmse=13.070
+[FD002][multi-seed-teacher] seed=45: val_rmse=13.729 test_rmse=12.966
+[FD002][multi-seed-teacher] seed=46: val_rmse=14.140 test_rmse=13.471
+[FD002][multi-seed-teacher] seed=47: val_rmse=14.133 test_rmse=13.758
+[FD002][multi-seed-teacher] seed=48: val_rmse=13.946 test_rmse=13.877
+[FD002][multi-seed-teacher] seed=49: val_rmse=14.068 test_rmse=13.221
+[FD002][multi-seed-teacher] seed=50: val_rmse=13.543 test_rmse=14.025
+[FD002][multi-seed-teacher] seed=51: val_rmse=14.047 test_rmse=14.029
+[FD002][multi-seed-teacher] mean/std test_rmse across 10 runs: 13.416 +/- 0.483
+[FD002][multi-seed-teacher] SINGLE BEST (seed=50, chosen by val_rmse=13.543): test_rmse=14.025
+[FD002][multi-seed-teacher] ENSEMBLE (best 6-of-10 by val_rmse, seeds=[50, 43, 42, 45, 48, 51]): test_rmse=12.709
+[FD002][multi-seed-student] seed=42: val_rmse=13.532 test_rmse=12.661
+[FD002][multi-seed-student] seed=43: val_rmse=13.199 test_rmse=12.494
+[FD002][multi-seed-student] seed=44: val_rmse=13.153 test_rmse=12.457
+[FD002][multi-seed-student] seed=45: val_rmse=13.278 test_rmse=12.382
+[FD002][multi-seed-student] seed=46: val_rmse=13.072 test_rmse=12.392
+[FD002][multi-seed-student] seed=47: val_rmse=13.210 test_rmse=12.498
+[FD002][multi-seed-student] seed=48: val_rmse=12.829 test_rmse=12.638
+[FD002][multi-seed-student] seed=49: val_rmse=13.607 test_rmse=13.013
+[FD002][multi-seed-student] seed=50: val_rmse=13.342 test_rmse=11.900
+[FD002][multi-seed-student] seed=51: val_rmse=13.278 test_rmse=12.027
+[FD002][multi-seed-student] mean/std test_rmse across 10 runs: 12.446 +/- 0.314
+[FD002][multi-seed-student] SINGLE BEST (seed=48, chosen by val_rmse=12.829): test_rmse=12.638
+[FD002][multi-seed-student] ENSEMBLE (best 6-of-10 by val_rmse, seeds=[48, 46, 44, 43, 47, 51]): test_rmse=12.122
+[21:52:50] === STAGE OK: 6_multi_seed_protocol (2238.1s) ===
+[21:52:50] FD001/FD002 FINAL RUN DONE

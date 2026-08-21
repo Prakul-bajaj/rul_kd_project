@@ -9,7 +9,7 @@ same config fields (TeacherConfig / StudentConfig).
 """
 
 import torch
-from torch.optim.lr_scheduler import CosineAnnealingLR, ReduceLROnPlateau
+from torch.optim.lr_scheduler import CosineAnnealingLR, CosineAnnealingWarmRestarts, ReduceLROnPlateau
 
 
 class WarmupScheduler:
@@ -48,16 +48,33 @@ class WarmupScheduler:
 
 
 def build_scheduler(optimizer, cfg):
-    """cfg is a TeacherConfig or StudentConfig (both carry warmup_epochs /
-    use_plateau_scheduler / plateau_patience / plateau_factor)."""
-    if cfg.use_plateau_scheduler:
+    """cfg is a TeacherConfig or StudentConfig. `cfg.lr_schedule` selects the
+    post-warmup schedule:
+      "warm_restarts" (default, FD001/FD002 literature pass -- matches
+        TBiGNet/P04's CosineAnnealingWarmRestarts exactly): periodically
+        restarts the LR every warm_restart_t0 epochs instead of decaying
+        once over the whole budget, to kick training out of the sharp
+        overfit minima this project has directly observed.
+      "plateau": ReduceLROnPlateau, decays only when val RMSE stalls.
+      "cosine": single smooth decay over the remaining epoch budget
+        (the project's original default).
+    """
+    schedule = getattr(cfg, "lr_schedule", "cosine")
+    if schedule == "plateau":
         post = ReduceLROnPlateau(optimizer, mode="min",
                                   patience=cfg.plateau_patience, factor=cfg.plateau_factor)
         is_plateau = True
-    else:
+    elif schedule == "warm_restarts":
+        post = CosineAnnealingWarmRestarts(
+            optimizer, T_0=cfg.warm_restart_t0, eta_min=cfg.warm_restart_eta_min,
+        )
+        is_plateau = False
+    elif schedule == "cosine":
         remaining_epochs = max(1, cfg.epochs - cfg.warmup_epochs)
         post = CosineAnnealingLR(optimizer, T_max=remaining_epochs)
         is_plateau = False
+    else:
+        raise ValueError(f"unknown lr_schedule: {schedule!r}")
     return WarmupScheduler(optimizer, cfg.lr, cfg.warmup_epochs, post, is_plateau)
 
 

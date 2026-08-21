@@ -1,0 +1,23 @@
+[21:47:48] FULL PIPELINE START -- device=cuda
+[21:47:48] === STAGE START: 1_preprocess ===
+[21:47:58] === STAGE OK: 1_preprocess (10.2s) ===
+[21:47:58] === STAGE START: 2_teacher_arch_sweep ===
+[22:24:11] teacher sweep winner across all subsets: teacher_d64_h4_l2 (beats baseline on 1/4 subsets)
+[22:24:11] === STAGE OK: 2_teacher_arch_sweep (2173.5s) ===
+[22:24:11] === STAGE START: 3_retrain_official_teacher ===
+[22:27:17] === STAGE OK: 3_retrain_official_teacher (185.4s) ===
+[22:27:17] === STAGE START: 4_kd_vs_no_kd ===
+[22:37:32] === STAGE OK: 4_kd_vs_no_kd (615.1s) ===
+[22:37:32] === STAGE START: 5_student_arch_sweep ===
+[00:45:14] === STAGE OK: 5_student_arch_sweep (7662.7s) ===
+[00:45:14] === STAGE START: 6_kd_ablation ===
+[07:37:32] === STAGE OK: 6_kd_ablation (24738.0s) ===
+[07:37:32] === STAGE START: 7_cross_validation ===
+[08:28:03] === STAGE OK: 7_cross_validation (3030.5s) ===
+[08:28:03] === STAGE START: 8_diagnostics ===
+[08:28:06] === STAGE OK: 8_diagnostics (2.7s) ===
+[08:28:06] === STAGE START: 9_ensembles ===
+[08:50:44] === STAGE OK: 9_ensembles (1357.9s) ===
+[08:50:44] === STAGE START: 10_final_evaluate ===
+[08:50:51] === STAGE OK: 10_final_evaluate (7.3s) ===
+[08:50:51] FULL PIPELINE DONE

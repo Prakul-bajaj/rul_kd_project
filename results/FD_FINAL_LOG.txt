@@ -1,0 +1,14 @@
+[20:57:23] FD001/FD002 FINAL RUN START -- device=cuda
+[20:57:23] === STAGE START: 1_preprocess ===
+[20:57:32] === STAGE OK: 1_preprocess (9.2s) ===
+[20:57:32] === STAGE START: 2_official_teacher ===
+[20:59:20] === STAGE OK: 2_official_teacher (108.6s) ===
+[20:59:20] === STAGE START: 3_official_student_kd_and_nokd ===
+[21:03:10] === STAGE OK: 3_official_student_kd_and_nokd (229.4s) ===
+[21:03:10] === STAGE START: 4_ensembles ===
+[21:14:08] === STAGE OK: 4_ensembles (657.7s) ===
+[21:14:08] === STAGE START: 5_final_evaluate ===
+[21:15:32] === STAGE OK: 5_final_evaluate (84.3s) ===
+[21:15:32] === STAGE START: 6_multi_seed_protocol ===
+[21:52:50] === STAGE OK: 6_multi_seed_protocol (2238.1s) ===
+[21:52:50] FD001/FD002 FINAL RUN DONE

@@ -27,16 +27,34 @@ class PositionalEncoding(nn.Module):
 
 
 class RULRegressionHead(nn.Module):
-    """Two-layer MLP head mapping pooled features -> a scalar RUL prediction."""
+    """Two-layer MLP head mapping pooled features -> a scalar RUL prediction.
 
-    def __init__(self, d_in: int, d_hidden: int, dropout: float = 0.1):
+    output_activation lets the final layer be constrained to strictly
+    positive output ("softplus" or "relu") instead of an unconstrained
+    linear output -- RUL is a cycles-remaining quantity that's never
+    negative by construction (clipped at 0 in preprocessing), so nothing
+    stops the current linear head from predicting a negative RUL. Kept
+    toggleable ("none" by default) rather than switched on unconditionally,
+    so it can be A/B'd against the existing unconstrained head instead of
+    silently changing every existing checkpoint's architecture.
+    """
+
+    def __init__(self, d_in: int, d_hidden: int, dropout: float = 0.1,
+                 output_activation: str = "none"):
         super().__init__()
-        self.net = nn.Sequential(
+        layers = [
             nn.Linear(d_in, d_hidden),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(d_hidden, 1),
-        )
+        ]
+        if output_activation == "softplus":
+            layers.append(nn.Softplus())
+        elif output_activation == "relu":
+            layers.append(nn.ReLU())
+        elif output_activation != "none":
+            raise ValueError(f"unknown output_activation: {output_activation!r}")
+        self.net = nn.Sequential(*layers)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.net(x)

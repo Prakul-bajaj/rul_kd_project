@@ -1,0 +1,188 @@
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_wsweep30.npz | train=(37051, 30, 17) val=(9168, 30, 17) test=(259, 30, 17) (stride=1, window_size=30, input_dim=17)
+[FD002][window-sweep] window=30: rmse=15.183 score=1408.2
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_wsweep40.npz | train=(34971, 40, 17) val=(8648, 40, 17) test=(259, 40, 17) (stride=1, window_size=40, input_dim=17)
+[FD002][window-sweep] window=40: rmse=14.394 score=1376.8
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_wsweep50.npz | train=(32891, 50, 17) val=(8128, 50, 17) test=(259, 50, 17) (stride=1, window_size=50, input_dim=17)
+[FD002][window-sweep] window=50: rmse=15.258 score=1564.9
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_wsweep60.npz | train=(30811, 60, 17) val=(7608, 60, 17) test=(259, 60, 17) (stride=1, window_size=60, input_dim=17)
+[FD002][window-sweep] window=60: rmse=13.842 score=1070.1
+[FD002][window-sweep] WINNER: window_size=60
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\fd_mastery_window_sweep_FD002.csv
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_sensors_14_sensors.npz | train=(30811, 60, 17) val=(7608, 60, 17) test=(259, 60, 17) (stride=1, window_size=60, input_dim=17)
+[FD002][sensor-sweep] 14_sensors (n=14): rmse=13.842 score=1070.1
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+  clipping 66 extreme value(s) (0.005% of all feature values) to +/-10.0
+  clipping 28 extreme value(s) (0.003% of all feature values) to +/-10.0
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_sensors_21_sensors.npz | train=(30811, 60, 24) val=(7608, 60, 24) test=(259, 60, 24) (stride=1, window_size=60, input_dim=24)
+[FD002][sensor-sweep] 21_sensors (n=21): rmse=13.252 score=951.9
+[FD002][sensor-sweep] WINNER: 21_sensors
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\fd_mastery_sensor_test_FD002.csv
+[FD001] loading raw data ...
+[FD001] single-condition subset -> using global normalization
+[FD001] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD001_archsweep.npz | train=(14459, 30, 17) val=(3272, 30, 17) test=(100, 30, 17) (stride=1, window_size=30, input_dim=17)
+[FD001][arch-sweep] d32_h2_l1: rmse=14.383 params=9729
+[FD001][arch-sweep] d32_h2_l2: rmse=14.018 params=18273
+[FD001][arch-sweep] d32_h2_l3: rmse=14.689 params=26817
+[FD001][arch-sweep] d32_h4_l1: rmse=14.468 params=9729
+[FD001][arch-sweep] d32_h4_l2: rmse=14.602 params=18273
+[FD001][arch-sweep] d32_h4_l3: rmse=14.867 params=26817
+[FD001][arch-sweep] d64_h2_l1: rmse=17.737 params=36865
+[FD001][arch-sweep] d64_h2_l2: rmse=14.103 params=70337
+[FD001][arch-sweep] d64_h2_l3: rmse=14.584 params=103809
+[FD001][arch-sweep] d64_h4_l1: rmse=16.325 params=36865
+[FD001][arch-sweep] d64_h4_l2: rmse=14.190 params=70337
+[FD001][arch-sweep] d64_h4_l3: rmse=14.873 params=103809
+[FD001][arch-sweep] d96_h2_l1: rmse=16.656 params=81409
+[FD001][arch-sweep] d96_h2_l2: rmse=15.224 params=156193
+[FD001][arch-sweep] d96_h2_l3: rmse=13.785 params=230977
+[FD001][arch-sweep] d96_h4_l1: rmse=17.142 params=81409
+[FD001][arch-sweep] d96_h4_l2: rmse=16.191 params=156193
+[FD001][arch-sweep] d96_h4_l3: rmse=15.196 params=230977
+[FD001][arch-sweep] d128_h2_l1: rmse=16.400 params=143361
+[FD001][arch-sweep] d128_h2_l2: rmse=16.141 params=275841
+[FD001][arch-sweep] d128_h2_l3: rmse=15.644 params=408321
+[FD001][arch-sweep] d128_h4_l1: rmse=16.405 params=143361
+[FD001][arch-sweep] d128_h4_l2: rmse=16.693 params=275841
+[FD001][arch-sweep] d128_h4_l3: rmse=14.621 params=408321
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+  clipping 66 extreme value(s) (0.005% of all feature values) to +/-10.0
+  clipping 28 extreme value(s) (0.003% of all feature values) to +/-10.0
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_archsweep.npz | train=(30811, 60, 24) val=(7608, 60, 24) test=(259, 60, 24) (stride=1, window_size=60, input_dim=24)
+[FD002][arch-sweep] d32_h2_l1: rmse=14.116 params=9953
+[FD002][arch-sweep] d32_h2_l2: rmse=13.546 params=18497
+[FD002][arch-sweep] d32_h2_l3: rmse=12.688 params=27041
+[FD002][arch-sweep] d32_h4_l1: rmse=14.501 params=9953
+[FD002][arch-sweep] d32_h4_l2: rmse=13.266 params=18497
+[FD002][arch-sweep] d32_h4_l3: rmse=13.314 params=27041
+[FD002][arch-sweep] d64_h2_l1: rmse=15.369 params=37313
+[FD002][arch-sweep] d64_h2_l2: rmse=14.269 params=70785
+[FD002][arch-sweep] d64_h2_l3: rmse=13.806 params=104257
+[FD002][arch-sweep] d64_h4_l1: rmse=15.080 params=37313
+[FD002][arch-sweep] d64_h4_l2: rmse=13.252 params=70785
+[FD002][arch-sweep] d64_h4_l3: rmse=12.949 params=104257
+[FD002][arch-sweep] d96_h2_l1: rmse=15.136 params=82081
+[FD002][arch-sweep] d96_h2_l2: rmse=13.644 params=156865
+[FD002][arch-sweep] d96_h2_l3: rmse=13.594 params=231649
+[FD002][arch-sweep] d96_h4_l1: rmse=17.249 params=82081C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+[FD002][arch-sweep] d96_h4_l2: rmse=16.592 params=156865
+[FD002][arch-sweep] d96_h4_l3: rmse=14.183 params=231649
+[FD002][arch-sweep] d128_h2_l1: rmse=16.689 params=144257
+[FD002][arch-sweep] d128_h2_l2: rmse=14.555 params=276737
+[FD002][arch-sweep] d128_h2_l3: rmse=13.148 params=409217
+[FD002][arch-sweep] d128_h4_l1: rmse=14.617 params=144257
+[FD002][arch-sweep] d128_h4_l2: rmse=14.884 params=276737
+[FD002][arch-sweep] d128_h4_l3: rmse=13.603 params=409217
+[FD001][arch-sweep] WINNER: d96_h2_l3 (rmse=13.785)
+[FD002][arch-sweep] WINNER: d32_h2_l3 (rmse=12.688)
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\fd_mastery_teacher_arch_sweep.csv
+[FD001] loading raw data ...
+[FD001] single-condition subset -> using global normalization
+[FD001] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD001_bssweep.npz | train=(14459, 30, 17) val=(3272, 30, 17) test=(100, 30, 17) (stride=1, window_size=30, input_dim=17)
+[FD001][bs-sweep] batch_size=32: rmse=15.247 score=448.0
+[FD001][bs-sweep] batch_size=64: rmse=16.713 score=599.4
+[FD001][bs-sweep] batch_size=128: rmse=15.916 score=440.1
+[FD001][bs-sweep] batch_size=256: rmse=13.785 score=291.2
+[FD002] loading raw data ...
+[FD002] multi-condition subset -> using condition-wise normalization (6 clusters)
+  cluster 0: 13458 rows (25.0%)
+  cluster 1: 8122 rows (15.1%)
+  cluster 2: 8002 rows (14.9%)
+  cluster 3: 8044 rows (15.0%)
+  cluster 4: 8096 rows (15.1%)
+  cluster 5: 8037 rows (15.0%)
+  clipping 66 extreme value(s) (0.005% of all feature values) to +/-10.0
+  clipping 28 extreme value(s) (0.003% of all feature values) to +/-10.0
+[FD002] note: 259/259 test unit(s) have a final window that crosses a condition boundary (kept -- exactly one prediction per test unit is required)
+[FD002] saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\data\processed\FD002_bssweep.npz | train=(30811, 60, 24) val=(7608, 60, 24) test=(259, 60, 24) (stride=1, window_size=60, input_dim=24)
+[FD002][bs-sweep] batch_size=32: rmse=13.962 score=963.6
+[FD002][bs-sweep] batch_size=64: rmse=13.110 score=909.9
+[FD002][bs-sweep] batch_size=128: rmse=12.821 score=813.5
+[FD002][bs-sweep] batch_size=256: rmse=12.688 score=715.0
+[FD001][bs-sweep] WINNER: batch_size=256 (rmse=13.785)
+[FD002][bs-sweep] WINNER: batch_size=256 (rmse=12.688)
+saved -> C:\Users\HP\OneDrive\Desktop\Capstone\rul_kd_project\results\fd_mastery_batch_size_sweep.csv
+
+=== FD001/FD002 mastery sweep -- final settings determined ===
+  FD001: window=30, n_sensors=14, arch={'d_model': 96, 'n_heads': 2, 'n_layers': 3, 'd_ff': 192}
+  FD002: window=60, n_sensors=21, arch={'d_model': 32, 'n_heads': 2, 'n_layers': 3, 'd_ff': 64}

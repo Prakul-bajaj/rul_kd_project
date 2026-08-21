@@ -1,0 +1,104 @@
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Config used: {'input_dim': 17, 'd_model': 64, 'n_heads': 4, 'n_layers': 2, 'd_ff': 256, 'dropout': 0.2, 'window_size': 30, 'use_gru_head': False, 'gru_hidden': 128, 'lr': 0.001, 'weight_decay': 0.0001, 'batch_size': 256, 'epochs': 150, 'patience': 30, 'warmup_epochs': 5, 'use_plateau_scheduler': True, 'plateau_patience': 8, 'plateau_factor': 0.5, 'augment_noise_std': 0.0, 'augment_mask_prob': 0.0, 'output_activation': 'softplus'}
+
+=== FD001 ===
+[FD001][fix-check] epoch 001 train_rmse=86.783 val_rmse=80.535 val_score=8413502.0
+[FD001][fix-check] epoch 002 train_rmse=83.181 val_rmse=78.101 val_score=6780476.0
+[FD001][fix-check] epoch 003 train_rmse=79.566 val_rmse=72.968 val_score=4237332.0
+[FD001][fix-check] epoch 004 train_rmse=72.448 val_rmse=63.285 val_score=1698075.5
+[FD001][fix-check] epoch 005 train_rmse=59.726 val_rmse=46.954 val_score=322497.4
+[FD001][fix-check] epoch 006 train_rmse=39.776 val_rmse=23.248 val_score=23900.7
+[FD001][fix-check] epoch 007 train_rmse=21.868 val_rmse=15.436 val_score=21045.9
+[FD001][fix-check] epoch 008 train_rmse=18.396 val_rmse=16.102 val_score=29564.6
+[FD001][fix-check] epoch 009 train_rmse=17.661 val_rmse=14.073 val_score=19679.9
+[FD001][fix-check] epoch 010 train_rmse=17.175 val_rmse=14.269 val_score=14993.5
+[FD001][fix-check] epoch 011 train_rmse=16.664 val_rmse=15.510 val_score=23556.8
+[FD001][fix-check] epoch 012 train_rmse=15.953 val_rmse=13.923 val_score=16286.4
+[FD001][fix-check] epoch 013 train_rmse=15.455 val_rmse=14.661 val_score=16471.9
+[FD001][fix-check] epoch 014 train_rmse=15.406 val_rmse=14.543 val_score=12982.3
+[FD001][fix-check] epoch 015 train_rmse=15.222 val_rmse=14.931 val_score=17223.9
+[FD001][fix-check] epoch 016 train_rmse=14.980 val_rmse=15.108 val_score=17557.5
+[FD001][fix-check] epoch 017 train_rmse=14.782 val_rmse=14.225 val_score=14923.4
+[FD001][fix-check] epoch 018 train_rmse=14.535 val_rmse=16.107 val_score=23655.1
+[FD001][fix-check] epoch 019 train_rmse=14.654 val_rmse=14.082 val_score=12921.9
+[FD001][fix-check] epoch 020 train_rmse=14.168 val_rmse=14.629 val_score=13184.7
+[FD001][fix-check] epoch 021 train_rmse=14.200 val_rmse=17.185 val_score=35861.3
+[FD001][fix-check] epoch 022 train_rmse=13.768 val_rmse=15.667 val_score=22868.8
+[FD001][fix-check] epoch 023 train_rmse=13.730 val_rmse=16.278 val_score=27754.6
+[FD001][fix-check] epoch 024 train_rmse=13.516 val_rmse=17.317 val_score=32400.2
+[FD001][fix-check] epoch 025 train_rmse=13.586 val_rmse=15.999 val_score=21614.1
+[FD001][fix-check] epoch 026 train_rmse=13.470 val_rmse=16.057 val_score=24737.5
+[FD001][fix-check] epoch 027 train_rmse=13.365 val_rmse=16.789 val_score=27161.9
+[FD001][fix-check] epoch 028 train_rmse=13.310 val_rmse=16.142 val_score=24073.2
+[FD001][fix-check] epoch 029 train_rmse=13.370 val_rmse=16.640 val_score=28832.6
+[FD001][fix-check] epoch 030 train_rmse=13.129 val_rmse=16.649 val_score=25511.3
+[FD001][fix-check] epoch 031 train_rmse=13.042 val_rmse=17.439 val_score=31861.9
+[FD001][fix-check] epoch 032 train_rmse=13.023 val_rmse=16.426 val_score=25950.1
+[FD001][fix-check] epoch 033 train_rmse=12.982 val_rmse=17.121 val_score=29957.6
+[FD001][fix-check] epoch 034 train_rmse=13.110 val_rmse=16.651 val_score=25754.4
+[FD001][fix-check] epoch 035 train_rmse=13.018 val_rmse=17.676 val_score=32306.5
+[FD001][fix-check] epoch 036 train_rmse=13.007 val_rmse=17.030 val_score=28978.3
+[FD001][fix-check] epoch 037 train_rmse=12.994 val_rmse=17.204 val_score=31116.8
+[FD001][fix-check] epoch 038 train_rmse=13.154 val_rmse=16.804 val_score=25788.6
+[FD001][fix-check] epoch 039 train_rmse=13.003 val_rmse=16.688 val_score=26040.5
+[FD001][fix-check] epoch 040 train_rmse=12.979 val_rmse=17.562 val_score=33446.7
+[FD001][fix-check] epoch 041 train_rmse=12.718 val_rmse=16.745 val_score=26372.5
+[FD001][fix-check] epoch 042 train_rmse=12.766 val_rmse=17.598 val_score=32379.2
+[FD001][fix-check] early stopping at epoch 42
+[FD001][fix-check] TEST rmse=14.950 score=407.0
+[FD001] FINAL test_rmse=14.950 test_score=407.0
+
+=== FD003 ===
+[FD003][fix-check] epoch 001 train_rmse=93.641 val_rmse=88.323 val_score=14209781.0
+[FD003][fix-check] epoch 002 train_rmse=89.469 val_rmse=85.172 val_score=10802032.0
+[FD003][fix-check] epoch 003 train_rmse=84.704 val_rmse=78.235 val_score=5816161.0
+[FD003][fix-check] epoch 004 train_rmse=74.794 val_rmse=64.564 val_score=1652442.1
+[FD003][fix-check] epoch 005 train_rmse=56.626 val_rmse=40.826 val_score=156232.5
+[FD003][fix-check] epoch 006 train_rmse=30.530 val_rmse=17.876 val_score=55701.5
+[FD003][fix-check] epoch 007 train_rmse=19.638 val_rmse=16.678 val_score=31304.1
+[FD003][fix-check] epoch 008 train_rmse=17.929 val_rmse=13.215 val_score=17266.0
+[FD003][fix-check] epoch 009 train_rmse=17.307 val_rmse=12.546 val_score=14802.3
+[FD003][fix-check] epoch 010 train_rmse=16.598 val_rmse=13.564 val_score=17699.0
+[FD003][fix-check] epoch 011 train_rmse=16.146 val_rmse=13.396 val_score=17233.4
+[FD003][fix-check] epoch 012 train_rmse=16.032 val_rmse=14.355 val_score=25256.0
+[FD003][fix-check] epoch 013 train_rmse=15.957 val_rmse=13.326 val_score=20434.0
+[FD003][fix-check] epoch 014 train_rmse=15.711 val_rmse=13.923 val_score=23200.1
+[FD003][fix-check] epoch 015 train_rmse=15.378 val_rmse=12.925 val_score=16377.6
+[FD003][fix-check] epoch 016 train_rmse=15.285 val_rmse=12.074 val_score=14897.3
+[FD003][fix-check] epoch 017 train_rmse=15.192 val_rmse=13.243 val_score=20762.0
+[FD003][fix-check] epoch 018 train_rmse=15.236 val_rmse=14.997 val_score=31121.4
+[FD003][fix-check] epoch 019 train_rmse=14.946 val_rmse=13.822 val_score=27757.0
+[FD003][fix-check] epoch 020 train_rmse=14.828 val_rmse=13.975 val_score=35810.2
+[FD003][fix-check] epoch 021 train_rmse=14.598 val_rmse=14.483 val_score=41995.3
+[FD003][fix-check] epoch 022 train_rmse=14.535 val_rmse=13.794 val_score=30124.5
+[FD003][fix-check] epoch 023 train_rmse=14.518 val_rmse=15.829 val_score=36556.9
+[FD003][fix-check] epoch 024 train_rmse=14.607 val_rmse=15.413 val_score=37804.0
+[FD003][fix-check] epoch 025 train_rmse=14.319 val_rmse=14.867 val_score=33305.9
+[FD003][fix-check] epoch 026 train_rmse=13.930 val_rmse=15.980 val_score=43015.9
+[FD003][fix-check] epoch 027 train_rmse=14.048 val_rmse=15.954 val_score=49479.1
+[FD003][fix-check] epoch 028 train_rmse=13.858 val_rmse=15.454 val_score=34871.3
+[FD003][fix-check] epoch 029 train_rmse=13.959 val_rmse=14.311 val_score=29463.9
+[FD003][fix-check] epoch 030 train_rmse=13.725 val_rmse=14.616 val_score=41307.8
+[FD003][fix-check] epoch 031 train_rmse=13.753 val_rmse=15.238 val_score=41497.9
+[FD003][fix-check] epoch 032 train_rmse=13.751 val_rmse=16.745 val_score=48894.7
+[FD003][fix-check] epoch 033 train_rmse=13.671 val_rmse=15.413 val_score=37045.3
+[FD003][fix-check] epoch 034 train_rmse=13.655 val_rmse=15.576 val_score=40548.3
+[FD003][fix-check] epoch 035 train_rmse=13.568 val_rmse=16.187 val_score=51526.6
+[FD003][fix-check] epoch 036 train_rmse=13.449 val_rmse=16.377 val_score=46839.9
+[FD003][fix-check] epoch 037 train_rmse=13.408 val_rmse=14.707 val_score=32772.9
+[FD003][fix-check] epoch 038 train_rmse=13.317 val_rmse=16.268 val_score=47824.1
+[FD003][fix-check] epoch 039 train_rmse=13.354 val_rmse=16.053 val_score=47419.1
+[FD003][fix-check] epoch 040 train_rmse=13.363 val_rmse=15.645 val_score=38160.2
+[FD003][fix-check] epoch 041 train_rmse=13.401 val_rmse=15.806 val_score=39586.1
+[FD003][fix-check] epoch 042 train_rmse=13.387 val_rmse=15.918 val_score=38582.1
+[FD003][fix-check] epoch 043 train_rmse=13.346 val_rmse=16.012 val_score=42248.4
+[FD003][fix-check] epoch 044 train_rmse=13.349 val_rmse=15.868 val_score=46879.5
+[FD003][fix-check] epoch 045 train_rmse=13.253 val_rmse=16.649 val_score=57277.6
+[FD003][fix-check] epoch 046 train_rmse=13.205 val_rmse=16.433 val_score=57496.8
+[FD003][fix-check] early stopping at epoch 46
+[FD003][fix-check] TEST rmse=14.393 score=491.9
+[FD003] FINAL test_rmse=14.393 test_score=491.9
+

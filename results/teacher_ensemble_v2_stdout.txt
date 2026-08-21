@@ -1,0 +1,27 @@
+[FD001][teacher-ensemble] seed=42: trained test_rmse=13.462 test_score=306.4
+[FD001][teacher-ensemble] seed=43: trained test_rmse=14.267 test_score=292.8
+[FD001][teacher-ensemble] seed=44: trained test_rmse=14.007 test_score=305.6
+[FD001][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.381 test_score=274.9
+[FD001] ensemble rmse=13.381
+[FD002][teacher-ensemble] seed=42: trained test_rmse=13.304 test_score=842.1
+[FD002][teacher-ensemble] seed=43: trained test_rmse=13.119 test_score=841.0
+[FD002][teacher-ensemble] seed=44: trained test_rmse=14.439 test_score=949.4
+[FD002][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.200 test_score=789.2
+[FD002] ensemble rmse=13.200
+[FD003][teacher-ensemble] seed=42: trained test_rmse=14.335 test_score=544.5
+[FD003][teacher-ensemble] seed=43: trained test_rmse=13.636 test_score=480.0
+[FD003][teacher-ensemble] seed=44: trained test_rmse=13.790 test_score=355.3
+[FD003][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.331 test_score=402.8
+[FD003] ensemble rmse=13.331
+[FD004][teacher-ensemble] seed=42: trained test_rmse=15.681 test_score=1743.6
+[FD004][teacher-ensemble] seed=43: trained test_rmse=15.560 test_score=1558.3
+[FD004][teacher-ensemble] seed=44: trained test_rmse=15.378 test_score=1477.2
+[FD004][teacher-ensemble] ENSEMBLE (3 members) test_rmse=15.039 test_score=1462.5
+[FD004] ensemble rmse=15.039
+
+AVG ensemble rmse: 13.737499237060547
+subset  ensemble_rmse  ensemble_score
+ FD001      13.380835      274.924896
+ FD002      13.199733      789.185669
+ FD003      13.330656      402.804932
+ FD004      15.038774     1462.462158

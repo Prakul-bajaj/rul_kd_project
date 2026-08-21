@@ -24,7 +24,9 @@ def _current_config_dict() -> dict:
         "student_cfg": dataclasses.asdict(config.STUDENT_CFG),
         "kd_cfg": dataclasses.asdict(config.KD_CFG),
         "preprocessing": {
-            "window_size": config.WINDOW_SIZE,
+            "window_size_default": config.WINDOW_SIZE,
+            "window_size_by_subset": getattr(config, "WINDOW_SIZE_BY_SUBSET", None),
+            "sensor_columns_by_subset": getattr(config, "SENSOR_COLUMNS_BY_SUBSET", None),
             "window_stride": config.WINDOW_STRIDE,
             "rul_max_cap": config.RUL_MAX_CAP,
             "val_split_ratio": config.VAL_SPLIT_RATIO,

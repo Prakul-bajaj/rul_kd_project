@@ -1,0 +1,30 @@
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.num_heads is odd
+  warnings.warn(
+C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\nn\modules\transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.num_heads is odd
+  warnings.warn(
+[FD001][teacher-ensemble] seed=42: loaded cached member (test_rmse=13.462)
+[FD001][teacher-ensemble] seed=43: loaded cached member (test_rmse=14.267)
+[FD001][teacher-ensemble] seed=44: loaded cached member (test_rmse=14.007)
+[FD001][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.381 test_score=274.9
+[FD001] KD-from-ensemble student rmse=13.450 (teacher ensemble was 13.381)
+[FD002][teacher-ensemble] seed=42: loaded cached member (test_rmse=13.304)
+[FD002][teacher-ensemble] seed=43: loaded cached member (test_rmse=13.119)
+[FD002][teacher-ensemble] seed=44: loaded cached member (test_rmse=14.439)
+[FD002][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.200 test_score=789.2
+[FD002] KD-from-ensemble student rmse=13.153 (teacher ensemble was 13.200)
+[FD003][teacher-ensemble] seed=42: loaded cached member (test_rmse=14.335)
+[FD003][teacher-ensemble] seed=43: loaded cached member (test_rmse=13.636)
+[FD003][teacher-ensemble] seed=44: loaded cached member (test_rmse=13.790)
+[FD003][teacher-ensemble] ENSEMBLE (3 members) test_rmse=13.331 test_score=402.8
+[FD003] KD-from-ensemble student rmse=15.327 (teacher ensemble was 13.331)
+[FD004][teacher-ensemble] seed=42: loaded cached member (test_rmse=15.681)
+[FD004][teacher-ensemble] seed=43: loaded cached member (test_rmse=15.560)
+[FD004][teacher-ensemble] seed=44: loaded cached member (test_rmse=15.378)
+[FD004][teacher-ensemble] ENSEMBLE (3 members) test_rmse=15.039 test_score=1462.5
+[FD004] KD-from-ensemble student rmse=15.365 (teacher ensemble was 15.039)
+
+subset  kd_from_ensemble_rmse  teacher_ensemble_rmse
+ FD001              13.450387              13.380835
+ FD002              13.152893              13.199733
+ FD003              15.327154              13.330656
+ FD004              15.365354              15.038774

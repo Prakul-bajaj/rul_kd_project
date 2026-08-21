@@ -65,7 +65,7 @@ def _fixed_test_loader(subset: str, batch_size: int):
 
 def run_teacher_cv(subset: str, device: str, n_folds: int = None, teacher_cfg=None):
     n_folds = n_folds or config.CV_N_FOLDS
-    cfg = teacher_cfg if teacher_cfg is not None else config.TEACHER_CFG
+    cfg = teacher_cfg if teacher_cfg is not None else config.get_teacher_config(subset)
     data = load_split(subset)
     X_all, y_all, units_all = data["X_trainval"], data["y_trainval"], data["units_trainval"]
     test_loader = _fixed_test_loader(subset, cfg.batch_size)
@@ -85,7 +85,7 @@ def run_teacher_cv(subset: str, device: str, n_folds: int = None, teacher_cfg=No
 
 def run_student_cv(subset: str, device: str, n_folds: int = None, student_cfg=None, use_kd: bool = True):
     n_folds = n_folds or config.CV_N_FOLDS
-    cfg = student_cfg if student_cfg is not None else config.STUDENT_CFG
+    cfg = student_cfg if student_cfg is not None else config.get_student_config(subset)
     data = load_split(subset)
     X_all, y_all, units_all = data["X_trainval"], data["y_trainval"], data["units_trainval"]
     test_loader = _fixed_test_loader(subset, cfg.batch_size)

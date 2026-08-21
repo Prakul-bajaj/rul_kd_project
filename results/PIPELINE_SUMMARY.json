@@ -1,0 +1,72 @@
+{
+  "device": "cuda",
+  "started": "2026-08-17 21:47:48",
+  "stages": {
+    "1_preprocess": {
+      "status": "ok",
+      "seconds": 10.2
+    },
+    "2_teacher_arch_sweep": {
+      "status": "ok",
+      "seconds": 2173.5
+    },
+    "3_retrain_official_teacher": {
+      "status": "ok",
+      "seconds": 185.4
+    },
+    "4_kd_vs_no_kd": {
+      "status": "ok",
+      "seconds": 615.1
+    },
+    "5_student_arch_sweep": {
+      "status": "ok",
+      "seconds": 7662.7
+    },
+    "6_kd_ablation": {
+      "status": "ok",
+      "seconds": 24738.0
+    },
+    "7_cross_validation": {
+      "status": "ok",
+      "seconds": 3030.5
+    },
+    "8_diagnostics": {
+      "status": "ok",
+      "seconds": 2.7
+    },
+    "9_ensembles": {
+      "status": "ok",
+      "seconds": 1357.9
+    },
+    "10_final_evaluate": {
+      "status": "ok",
+      "seconds": 7.3
+    }
+  },
+  "teacher_winner": {
+    "variant": "teacher_d64_h4_l2",
+    "config": {
+      "input_dim": 17,
+      "d_model": 64,
+      "n_heads": 4,
+      "n_layers": 2,
+      "d_ff": 256,
+      "dropout": 0.2,
+      "window_size": 30,
+      "use_gru_head": false,
+      "gru_hidden": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 256,
+      "epochs": 150,
+      "patience": 15,
+      "warmup_epochs": 5,
+      "use_plateau_scheduler": false,
+      "plateau_patience": 5,
+      "plateau_factor": 0.5,
+      "augment_noise_std": 0.0,
+      "augment_mask_prob": 0.0
+    }
+  },
+  "finished": "2026-08-18 08:50:51"
+}

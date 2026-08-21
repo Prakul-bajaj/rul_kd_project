@@ -23,9 +23,14 @@ class CMAPSSDataset(Dataset):
         return self.X[idx], self.y[idx]
 
 
-def load_split(subset: str):
-    """Load the pre-processed arrays for one C-MAPSS subset."""
-    path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}.npz")
+def load_split(subset: str, suffix: str = ""):
+    """Load the pre-processed arrays for one C-MAPSS subset.
+
+    suffix picks a variant .npz written by preprocessing.py's
+    process_subset(..., suffix=...) -- e.g. suffix="_w50" for a
+    window-size sweep, "_s21" for a sensor-count A/B test -- instead of
+    the "main" {subset}.npz every other script reads by default."""
+    path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}{suffix}.npz")
     if not os.path.exists(path):
         raise FileNotFoundError(
             f"{path} not found. Run `python -m src.data.preprocessing "
@@ -35,14 +40,14 @@ def load_split(subset: str):
     return data
 
 
-def get_dataloaders(subset: str, batch_size: int, num_workers: int = 0):
+def get_dataloaders(subset: str, batch_size: int, num_workers: int = 0, suffix: str = ""):
     """num_workers defaults to 0: CMAPSSDataset just indexes an
     already-in-memory tensor (no per-item disk I/O), so worker processes
     add pure overhead here -- especially on Windows, where the 'spawn'
     start method re-imports the whole process and respawns workers every
     epoch by default (no persistent_workers), which was dominating wall
     time on these small subsets far more than the actual GPU compute."""
-    data = load_split(subset)
+    data = load_split(subset, suffix=suffix)
     train_ds = CMAPSSDataset(data["X_train"], data["y_train"])
     val_ds = CMAPSSDataset(data["X_val"], data["y_val"])
     test_ds = CMAPSSDataset(data["X_test"], data["y_test"])

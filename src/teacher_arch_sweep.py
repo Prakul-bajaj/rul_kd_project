@@ -66,7 +66,7 @@ def run_sweep(subset: str, device: str, epochs: int = None):
         overrides = {k: v for k, v in variant.items() if k != "name"}
         if epochs is not None:
             overrides["epochs"] = epochs
-        t_cfg = dataclasses.replace(TeacherConfig(), **overrides)
+        t_cfg = dataclasses.replace(config.get_teacher_config(subset), **overrides)
 
         model, test_rmse, test_score = train_teacher_model(
             subset, device, teacher_cfg=t_cfg,

@@ -54,7 +54,7 @@ def _renormalized_cfg(base: DistillationConfig, use_soft: bool, use_feature: boo
 
 def run_ablation(subset: str, device: str, epochs: int = None):
     base_kd_cfg = config.KD_CFG
-    s_cfg = config.STUDENT_CFG if epochs is None else dataclasses.replace(config.STUDENT_CFG, epochs=epochs)
+    s_cfg = config.get_student_config(subset) if epochs is None else dataclasses.replace(config.get_student_config(subset), epochs=epochs)
 
     results = []
     for variant in ABLATION_GRID:

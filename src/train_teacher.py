@@ -118,8 +118,10 @@ def train_teacher_model(subset: str, device: str, teacher_cfg: TeacherConfig = N
 
 
 def train_one_subset(subset: str, device: str, force: bool = False):
-    """CLI entry point: trains the *default* teacher (config.TEACHER_CFG)
-    and saves its checkpoint."""
+    """CLI entry point: trains the per-subset teacher (config.get_teacher_config(subset)
+    -- window size, sensor count, and architecture all vary by subset for
+    FD001/FD002, see config.py's WINDOW_SIZE_BY_SUBSET / SENSOR_COLUMNS_BY_SUBSET /
+    TEACHER_ARCH_BY_SUBSET) and saves its checkpoint."""
     ckpt_path = os.path.join(config.CHECKPOINT_DIR, f"teacher_{subset}.pt")
     data_path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}.npz")
 
@@ -138,10 +140,11 @@ def train_one_subset(subset: str, device: str, force: bool = False):
             print(f"[{subset}][teacher] checkpoint is older than the "
                   f"processed data -- retraining")
 
-    model, test_rmse, test_score = train_teacher_model(subset, device)
+    t_cfg = config.get_teacher_config(subset)
+    model, test_rmse, test_score = train_teacher_model(subset, device, teacher_cfg=t_cfg)
 
     os.makedirs(config.CHECKPOINT_DIR, exist_ok=True)
-    torch.save({"state_dict": model.state_dict(), "config": config.TEACHER_CFG,
+    torch.save({"state_dict": model.state_dict(), "config": t_cfg,
                 "test_rmse": test_rmse, "test_score": test_score}, ckpt_path)
     print(f"[{subset}][teacher] saved checkpoint -> {ckpt_path}")
     return test_rmse, test_score

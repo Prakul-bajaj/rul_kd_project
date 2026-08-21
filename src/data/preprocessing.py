@@ -92,9 +92,14 @@ def compute_piecewise_rul(df: pd.DataFrame, rul_max: int = config.RUL_MAX_CAP) -
     return df
 
 
-def select_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Keep only the operating-setting + informative-sensor columns."""
-    sensor_cols = [f"sensor_{i}" for i in config.SELECTED_SENSOR_COLUMNS]
+def select_features(df: pd.DataFrame, sensor_columns=None) -> pd.DataFrame:
+    """Keep only the operating-setting + informative-sensor columns.
+
+    sensor_columns overrides config.SELECTED_SENSOR_COLUMNS (e.g. to test
+    config.ALL_21_SENSOR_COLUMNS for a specific subset -- see
+    config.SENSOR_COLUMNS_BY_SUBSET / config.get_sensor_columns)."""
+    sensor_columns = sensor_columns if sensor_columns is not None else config.SELECTED_SENSOR_COLUMNS
+    sensor_cols = [f"sensor_{i}" for i in sensor_columns]
     op_cols = ["op1", "op2", "op3"]
     keep = ["unit_id", "cycle"] + op_cols + sensor_cols
     if "RUL" in df.columns:
@@ -346,7 +351,8 @@ def train_val_split_by_unit(unit_ids: np.ndarray, val_ratio: float, seed: int):
 # ---------------------------------------------------------------------------
 # Main per-subset pipeline
 # ---------------------------------------------------------------------------
-def process_subset(subset: str, stride: int = None, suffix: str = ""):
+def process_subset(subset: str, stride: int = None, suffix: str = "",
+                    window_size: int = None, sensor_columns=None):
     """Build data/processed/{subset}{suffix}.npz.
 
     Args:
@@ -354,8 +360,14 @@ def process_subset(subset: str, stride: int = None, suffix: str = ""):
             touching the module-level default.
         suffix: appended to the output filename, e.g. "_stride5", so a
             stride sweep doesn't overwrite the main processed file.
+        window_size: overrides config.get_window_size(subset) (for a
+            window-size sweep).
+        sensor_columns: overrides config.get_sensor_columns(subset) (for a
+            sensor-count A/B test, e.g. config.ALL_21_SENSOR_COLUMNS).
     """
     stride = stride if stride is not None else config.WINDOW_STRIDE
+    window_size = window_size if window_size is not None else config.get_window_size(subset)
+    sensor_columns = sensor_columns if sensor_columns is not None else config.get_sensor_columns(subset)
 
     print(f"[{subset}] loading raw data ...")
     train_raw = load_raw(subset, "train")
@@ -363,8 +375,8 @@ def process_subset(subset: str, stride: int = None, suffix: str = ""):
     rul_test = load_rul_labels(subset)
 
     train_raw = compute_piecewise_rul(train_raw)
-    train_sel = select_features(train_raw)
-    test_sel = select_features(test_raw)
+    train_sel = select_features(train_raw, sensor_columns=sensor_columns)
+    test_sel = select_features(test_raw, sensor_columns=sensor_columns)
 
     is_multi_condition = subset in config.MULTI_CONDITION_SUBSETS
     if is_multi_condition:
@@ -412,7 +424,7 @@ def process_subset(subset: str, stride: int = None, suffix: str = ""):
 
     (X_train_all, y_train_all, units_train_all, cycles_train_all,
      conds_train_all, n_dropped, _) = make_windows(
-        train_scaled, config.WINDOW_SIZE, stride, is_train=True,
+        train_scaled, window_size, stride, is_train=True,
         enforce_no_crossing=config.NO_WINDOW_CONDITION_CROSSING,
     )
     if is_multi_condition and config.NO_WINDOW_CONDITION_CROSSING:
@@ -428,7 +440,7 @@ def process_subset(subset: str, stride: int = None, suffix: str = ""):
 
     (X_test, _, test_unit_order, cycles_test, conds_test,
      _, n_test_crossing) = make_windows(
-        test_scaled, config.WINDOW_SIZE, stride, is_train=False,
+        test_scaled, window_size, stride, is_train=False,
         enforce_no_crossing=False,  # protocol requires exactly one window per test unit
     )
     if is_multi_condition and n_test_crossing:
@@ -458,7 +470,7 @@ def process_subset(subset: str, stride: int = None, suffix: str = ""):
     print(
         f"[{subset}] saved -> {out_path} | "
         f"train={X_train.shape} val={X_val.shape} test={X_test.shape} "
-        f"(stride={stride}, input_dim={X_train.shape[-1]})"
+        f"(stride={stride}, window_size={window_size}, input_dim={X_train.shape[-1]})"
     )
 
 
@@ -470,13 +482,15 @@ def main():
     )
     parser.add_argument("--stride", type=int, default=None,
                          help="Override WINDOW_STRIDE (for a stride sweep).")
+    parser.add_argument("--window-size", type=int, default=None,
+                         help="Override config.get_window_size(subset) (for a window-size sweep).")
     parser.add_argument("--suffix", default="",
                          help="Suffix for the output .npz filename, e.g. "
                               "_stride5, so it doesn't overwrite the main file.")
     args = parser.parse_args()
     subsets = config.SUBSETS if args.subset == "all" else [args.subset]
     for s in subsets:
-        process_subset(s, stride=args.stride, suffix=args.suffix)
+        process_subset(s, stride=args.stride, suffix=args.suffix, window_size=args.window_size)
 
 
 if __name__ == "__main__":

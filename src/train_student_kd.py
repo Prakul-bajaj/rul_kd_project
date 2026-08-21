@@ -46,7 +46,12 @@ def load_teacher(subset: str, device: str):
             f"--subset {subset}` first."
         )
     ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
-    teacher = build_teacher(config.TEACHER_CFG).to(device)
+    # Rebuild from the checkpoint's own saved config, not the current global
+    # default -- window size / sensor count / architecture all vary by
+    # subset (see config.get_teacher_config), so the global TEACHER_CFG
+    # would silently mismatch FD002's actual trained shape.
+    teacher_cfg = ckpt.get("config") or config.get_teacher_config(subset)
+    teacher = build_teacher(teacher_cfg).to(device)
     teacher.load_state_dict(ckpt["state_dict"])
     teacher.eval()
     for p in teacher.parameters():
@@ -92,8 +97,14 @@ def train_student(subset: str, device: str, student_cfg: StudentConfig = None,
     Returns:
         (student_model, kd_loss_fn, test_rmse, test_score)
     """
-    s_cfg = student_cfg if student_cfg is not None else config.STUDENT_CFG
-    t_cfg, kd_cfg = config.TEACHER_CFG, config.KD_CFG
+    s_cfg = student_cfg if student_cfg is not None else config.get_student_config(subset)
+    kd_cfg = config.KD_CFG
+    # t_cfg is only used below to compute teacher_pooled_dim for the KD
+    # feature projector -- if an already-built teacher_model was passed in
+    # (e.g. an ensemble), prefer its actual config over a freshly-looked-up
+    # default so the projector dimension always matches what's really there.
+    t_cfg = (teacher_model.cfg if teacher_model is not None and hasattr(teacher_model, "cfg")
+             else config.get_teacher_config(subset))
 
     # Reseed on every call so any student config, trained via this function,
     # gets the same weight initialization and data-shuffle order as any other
@@ -178,7 +189,7 @@ def train_student(subset: str, device: str, student_cfg: StudentConfig = None,
 
 
 def train_one_subset(subset: str, device: str, force: bool = False):
-    """CLI entry point: trains the *default* student (config.STUDENT_CFG)
+    """CLI entry point: trains the per-subset student (config.get_student_config(subset))
     and saves its checkpoint. This is what `comparison_{subset}.csv` reports."""
     ckpt_path = os.path.join(config.CHECKPOINT_DIR, f"student_{subset}.pt")
     data_path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}.npz")
@@ -199,10 +210,11 @@ def train_one_subset(subset: str, device: str, force: bool = False):
             print(f"[{subset}][student] checkpoint is older than the "
                   f"processed data or the teacher checkpoint -- retraining")
 
-    student, _, test_rmse, test_score = train_student(subset, device)
+    s_cfg = config.get_student_config(subset)
+    student, _, test_rmse, test_score = train_student(subset, device, student_cfg=s_cfg)
 
     os.makedirs(config.CHECKPOINT_DIR, exist_ok=True)
-    torch.save({"state_dict": student.state_dict(), "config": config.STUDENT_CFG,
+    torch.save({"state_dict": student.state_dict(), "config": s_cfg,
                 "test_rmse": test_rmse, "test_score": test_score}, ckpt_path)
     print(f"[{subset}][student] saved checkpoint -> {ckpt_path}")
     return test_rmse, test_score

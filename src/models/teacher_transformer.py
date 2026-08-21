@@ -29,6 +29,9 @@ class TeacherTransformer(nn.Module):
             dropout=cfg.dropout,
             activation="gelu",
             batch_first=True,
+            norm_first=True,   # Pre-LN: LayerNorm before each sublayer, not after --
+                                # removes the need for careful warmup to avoid early
+                                # training instability (Xiong et al. 2020)
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=cfg.n_layers)
         self.norm = nn.LayerNorm(cfg.d_model)
@@ -49,7 +52,18 @@ class TeacherTransformer(nn.Module):
         else:
             head_in = cfg.d_model
 
-        self.head = RULRegressionHead(head_in, head_in // 2, cfg.dropout)
+        self.head = RULRegressionHead(head_in, head_in // 2, cfg.dropout,
+                                       output_activation=getattr(cfg, "output_activation", "none"))
+        self._init_weights()
+
+    def _init_weights(self):
+        """Explicit Xavier-uniform init for every >=2D parameter, instead of
+        relying on PyTorch's per-module defaults (which vary in scale
+        across Linear/GRU/MultiheadAttention and aren't tuned as a set for
+        this architecture)."""
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
 
     def forward(self, x: torch.Tensor, return_features: bool = False):
         """

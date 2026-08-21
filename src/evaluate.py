@@ -45,14 +45,18 @@ def evaluate_subset(subset: str, device: str, train_baseline: bool = True):
     rows = []
 
     # --- Teacher -----------------------------------------------------
+    # Rebuilt from the checkpoint's own saved config where available, not
+    # the current global default -- window size / sensor count /
+    # architecture all vary by subset (FD001 vs. FD002), see
+    # config.get_teacher_config / config.get_student_config.
     teacher_ckpt = os.path.join(config.CHECKPOINT_DIR, f"teacher_{subset}.pt")
     if os.path.exists(teacher_ckpt):
         ckpt = torch.load(teacher_ckpt, map_location=device, weights_only=False)
-        teacher = build_teacher(config.TEACHER_CFG).to(device)
+        t_cfg = ckpt.get("config") or config.get_teacher_config(subset)
+        teacher = build_teacher(t_cfg).to(device)
         teacher.load_state_dict(ckpt["state_dict"])
         preds, targets = predict(teacher, test_loader, device)
-        prof = profile_model(teacher, config.TEACHER_CFG.window_size,
-                              config.TEACHER_CFG.input_dim, device)
+        prof = profile_model(teacher, t_cfg.window_size, t_cfg.input_dim, device)
         rows.append({"model": "Teacher (Transformer)", "subset": subset,
                       "rmse": rmse(targets, preds), "score": nasa_score(targets, preds),
                       **prof})
@@ -63,11 +67,11 @@ def evaluate_subset(subset: str, device: str, train_baseline: bool = True):
     student_ckpt = os.path.join(config.CHECKPOINT_DIR, f"student_{subset}.pt")
     if os.path.exists(student_ckpt):
         ckpt = torch.load(student_ckpt, map_location=device, weights_only=False)
-        student = build_student(config.STUDENT_CFG).to(device)
+        s_cfg = ckpt.get("config") or config.get_student_config(subset)
+        student = build_student(s_cfg).to(device)
         student.load_state_dict(ckpt["state_dict"])
         preds, targets = predict(student, test_loader, device)
-        prof = profile_model(student, config.STUDENT_CFG.window_size,
-                              config.STUDENT_CFG.input_dim, device)
+        prof = profile_model(student, s_cfg.window_size, s_cfg.input_dim, device)
         rows.append({"model": "Student (Distilled)", "subset": subset,
                       "rmse": rmse(targets, preds), "score": nasa_score(targets, preds),
                       **prof})
@@ -78,11 +82,11 @@ def evaluate_subset(subset: str, device: str, train_baseline: bool = True):
     no_kd_ckpt = os.path.join(config.CHECKPOINT_DIR, f"student_no_kd_{subset}.pt")
     if os.path.exists(no_kd_ckpt):
         ckpt = torch.load(no_kd_ckpt, map_location=device, weights_only=False)
-        student_no_kd = build_student(config.STUDENT_CFG).to(device)
+        s_cfg = ckpt.get("config") or config.get_student_config(subset)
+        student_no_kd = build_student(s_cfg).to(device)
         student_no_kd.load_state_dict(ckpt["state_dict"])
         preds, targets = predict(student_no_kd, test_loader, device)
-        prof = profile_model(student_no_kd, config.STUDENT_CFG.window_size,
-                              config.STUDENT_CFG.input_dim, device)
+        prof = profile_model(student_no_kd, s_cfg.window_size, s_cfg.input_dim, device)
         rows.append({"model": "Student (No KD)", "subset": subset,
                       "rmse": rmse(targets, preds), "score": nasa_score(targets, preds),
                       **prof})
@@ -94,31 +98,34 @@ def evaluate_subset(subset: str, device: str, train_baseline: bool = True):
     # --- Ensembles (only if every seed member checkpoint already exists --
     #     evaluate.py never trains ensemble members itself; run
     #     `python -m src.ensemble --subset X --model teacher/student` first) --
-    for kind, builder, cfg in [("teacher", build_teacher, config.TEACHER_CFG),
-                                ("student", build_student, config.STUDENT_CFG)]:
+    for kind, builder, default_cfg_fn in [("teacher", build_teacher, config.get_teacher_config),
+                                           ("student", build_student, config.get_student_config)]:
         member_paths = [os.path.join(config.CHECKPOINT_DIR, f"{kind}_{subset}_seed{seed}.pt")
                          for seed in config.ENSEMBLE_SEEDS]
         if all(os.path.exists(p) for p in member_paths):
             from src.ensemble import ModelEnsemble
             members = []
+            member_cfg = None
             for p in member_paths:
                 ckpt = torch.load(p, map_location=device, weights_only=False)
-                m = builder(cfg).to(device)
+                member_cfg = ckpt.get("config") or default_cfg_fn(subset)
+                m = builder(member_cfg).to(device)
                 m.load_state_dict(ckpt["state_dict"])
                 members.append(m)
             ens = ModelEnsemble(members).to(device)
             preds, targets = predict(ens, test_loader, device)
-            prof = profile_model(ens, cfg.window_size, cfg.input_dim, device)
+            prof = profile_model(ens, member_cfg.window_size, member_cfg.input_dim, device)
             rows.append({"model": f"{kind.capitalize()} (Ensemble x{len(members)})", "subset": subset,
                           "rmse": rmse(targets, preds), "score": nasa_score(targets, preds), **prof})
 
     # --- LSTM baseline (trained here if not already saved) -----------
     baseline_ckpt = os.path.join(config.CHECKPOINT_DIR, f"lstm_baseline_{subset}.pt")
     if train_baseline:
-        baseline = _get_or_train_baseline(subset, baseline_ckpt, device)
+        input_dim = config.get_input_dim(subset)
+        window_size = config.get_window_size(subset)
+        baseline = _get_or_train_baseline(subset, baseline_ckpt, device, input_dim)
         preds, targets = predict(baseline, test_loader, device)
-        prof = profile_model(baseline, config.TEACHER_CFG.window_size,
-                              config.TEACHER_CFG.input_dim, device)
+        prof = profile_model(baseline, window_size, input_dim, device)
         rows.append({"model": "LSTM Baseline", "subset": subset,
                       "rmse": rmse(targets, preds), "score": nasa_score(targets, preds),
                       **prof})
@@ -135,8 +142,9 @@ def evaluate_subset(subset: str, device: str, train_baseline: bool = True):
     return df
 
 
-def _get_or_train_baseline(subset, ckpt_path, device):
-    baseline = LSTMBaseline(config.TEACHER_CFG.input_dim).to(device)
+def _get_or_train_baseline(subset, ckpt_path, device, input_dim=None):
+    input_dim = input_dim if input_dim is not None else config.get_input_dim(subset)
+    baseline = LSTMBaseline(input_dim).to(device)
 
     data_path = os.path.join(config.PROCESSED_DATA_DIR, f"{subset}.npz")
     is_stale = (
